@@ -54,33 +54,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayListView(){
-        ArrayList<Events> eventsList = new ArrayList<Events>();
+        ArrayList<Event> eventsList = new ArrayList<Event>();
 
-        Events event = new Events("Career Fair", false);
-        eventsList.add(event);
-        event = new Events("Fair 1", false);
-        eventsList.add(event);
-        event = new Events("Fair 2", false);
-        eventsList.add(event);
-        event = new Events("Fair 3", false);
-        eventsList.add(event);
-        event = new Events("Fair 4", false);
-        eventsList.add(event);
-        event = new Events("Fair 5", false);
-        eventsList.add(event);
-        event = new Events("Fair 6", false);
-        eventsList.add(event);
-        event = new Events("Fair 7", false);
-        eventsList.add(event);
-        event = new Events("Fair 8", false);
-        eventsList.add(event);
-        event = new Events("Fair 9", false);
-        eventsList.add(event);
-        event = new Events("Fair 10", false);
-        eventsList.add(event);
-        event = new Events("Fair 11", false);
-        eventsList.add(event);
-        event = new Events("Fair 12", false);
+        Event event = new Event("Career Fair", false);
         eventsList.add(event);
 
         //creates an arrayadapter from the string array
@@ -93,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //when clicked it will show a toast.
-                Events event = (Events) parent.getItemAtPosition(position);
+                Event event = (Event) parent.getItemAtPosition(position);
                 Toast.makeText(getApplicationContext(),"Clicked "+event.getName(),Toast.LENGTH_LONG).show();
             }
         });
@@ -102,14 +78,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public class MyAdapter extends ArrayAdapter<Events> {
+    public class MyAdapter extends ArrayAdapter<Event> {
 
-        private ArrayList<Events> eventList;
+        private ArrayList<Event> eventList;
 
-        public MyAdapter(Context context, int textViewResourceid, ArrayList<Events> eventList){
+        public MyAdapter(Context context, int textViewResourceid, ArrayList<Event> eventList){
             super(context, textViewResourceid,eventList);
 
-            this.eventList = new ArrayList<Events>();
+            this.eventList = new ArrayList<Event>();
             this.eventList.addAll(eventList);
 
         }
@@ -122,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent){
             ViewHolder holder = null;
-            Log.v("ConvertView", String.valueOf(position));
+           // Log.v("ConvertView", String.valueOf(position));
 
             if(convertView == null){
                 LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -136,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 holder.name1.setOnClickListener(new View.OnClickListener(){
                     public void onClick(View v){
                         CheckBox cb = (CheckBox) v;
-                        Events event = (Events) cb.getTag();
+                        Event event = (Event) cb.getTag();
                         //Toast.makeText(getApplicationContext(),"Clicked "+cb.getText() + " is " +cb.isChecked(), Toast.LENGTH_SHORT).show();
                         event.setSelected(cb.isChecked());
                     }
@@ -146,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            Events event = eventList.get(position);
+            Event event = eventList.get(position);
            // holder.name.setText("");
             holder.name1.setText(event.getName());
             holder.name1.setChecked(event.isSelected());

@@ -7,10 +7,15 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 //TESTING COMMIT ANDROID STUDIO
+
+    //public ArrayList<Event> events = new ArrayList<Event>()
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //needs to populate the events array from data base on create
     }
 
     @Override

@@ -4,23 +4,15 @@
     android:layout_height="match_parent">
 
     <CheckBox
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/checkBox1"
         android:layout_alignParentLeft="true"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:text=""
-        />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/event"
-        android:layout_alignBaseline="@+id/checkBox1"
-        android:layout_alignBottom="@+id/checkBox1"
-        android:layout_toRightOf="@+id/checkBox1"
-        android:text="textView"
-        />
+        android:textSize="36dp" />
+
 
 </RelativeLayout>

@@ -66,6 +66,22 @@ public class MainActivity extends AppCompatActivity {
         eventsList.add(event);
         event = new Events("Fair 4", false);
         eventsList.add(event);
+        event = new Events("Fair 5", false);
+        eventsList.add(event);
+        event = new Events("Fair 6", false);
+        eventsList.add(event);
+        event = new Events("Fair 7", false);
+        eventsList.add(event);
+        event = new Events("Fair 8", false);
+        eventsList.add(event);
+        event = new Events("Fair 9", false);
+        eventsList.add(event);
+        event = new Events("Fair 10", false);
+        eventsList.add(event);
+        event = new Events("Fair 11", false);
+        eventsList.add(event);
+        event = new Events("Fair 12", false);
+        eventsList.add(event);
 
         //creates an arrayadapter from the string array
         dataAdapter = new MyAdapter(this, R.layout.event_list_items,eventsList);
@@ -99,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         private class ViewHolder{
-            TextView name;
+            //TextView name;
             CheckBox name1;
         }
 
@@ -113,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 convertView = vi.inflate(R.layout.event_list_items,null);
 
                 holder = new ViewHolder();
-                holder.name = (TextView) convertView.findViewById(R.id.event);
+               // holder.name = (TextView) convertView.findViewById(R.id.event);
                 holder.name1 = (CheckBox) convertView.findViewById(R.id.checkBox1);
                 convertView.setTag(holder);
 
@@ -131,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Events event = eventList.get(position);
-            holder.name.setText("");
+           // holder.name.setText("");
             holder.name1.setText(event.getName());
             holder.name1.setChecked(event.isSelected());
             holder.name1.setTag(event);

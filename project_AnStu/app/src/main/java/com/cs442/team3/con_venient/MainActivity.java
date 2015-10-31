@@ -1,32 +1,40 @@
 package com.cs442.team3.con_venient;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-<<<<<<< HEAD
-=======
-//TESTING COMMIT ANDROID STUDIO
+
 
     //public ArrayList<Event> events = new ArrayList<Event>()
->>>>>>> 369d3cbbe6b35a87e46c8032f631dec03cc52975
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-<<<<<<< HEAD
-        displayListView();
-=======
 
+        displayListView();
+        Button add = (Button)findViewById(R.id.addEvent);
+        add.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // starts a new Intent to add a Country
+                Intent pref_intent = new Intent(getBaseContext(), EventPrefs.class);
+
+                startActivity(pref_intent);
+            }
+        });
         //needs to populate the events array from data base on create
->>>>>>> 369d3cbbe6b35a87e46c8032f631dec03cc52975
     }
 
     @Override

@@ -6,7 +6,7 @@
         android:layout_width="match_parent" android:layout_height="wrap_content"
         android:layout_alignParentLeft="true" android:layout_alignParentTop="true"
         />
-    <Button android:id="@+id/add" style="?android:attr/buttonStyleSmall"
+    <Button android:id="@+id/addEvent" style="?android:attr/buttonStyleSmall"
         android:layout_width="fill_parent" android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/eventList"

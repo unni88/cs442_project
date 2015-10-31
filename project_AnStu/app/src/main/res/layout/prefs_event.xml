@@ -16,14 +16,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save"
-            android:OnClick= "onSave"
+            android:onClick = "onSave"
             />
         <Button
             android:id="@+id/cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancel"
-            android:OnClick= "onCancel"
+            android:onClick = "onCancel"
             />
     </TableRow>
 

@@ -10,12 +10,23 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+<<<<<<< HEAD
+=======
+//TESTING COMMIT ANDROID STUDIO
+
+    //public ArrayList<Event> events = new ArrayList<Event>()
+>>>>>>> 369d3cbbe6b35a87e46c8032f631dec03cc52975
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+<<<<<<< HEAD
         displayListView();
+=======
+
+        //needs to populate the events array from data base on create
+>>>>>>> 369d3cbbe6b35a87e46c8032f631dec03cc52975
     }
 
     @Override

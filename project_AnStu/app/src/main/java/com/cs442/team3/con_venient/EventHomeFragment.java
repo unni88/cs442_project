@@ -39,9 +39,9 @@ public class EventHomeFragment extends Fragment {
         ArrayList<MyEvent> events = MainActivity.data.getEvents();
         MyEvent ev = new MyEvent("", false, "", "");
         String s = "";
+        Toast.makeText(this.events.get(1).getName(),Toast.LENGTH_SHORT).show();
         for (int i = 0; i < events.size(); i++){
             if (name.equals(events.get(i).getName())) {
-                
                 ev = events.get(i);
             }
         }

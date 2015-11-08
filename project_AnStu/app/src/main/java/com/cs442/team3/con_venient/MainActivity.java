@@ -25,43 +25,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
 
-    public static DataModel data = new DataModel(MainActivity.event());
-
-    private static ArrayList<Event> event(){
-        ArrayList<Event> eventsList = new ArrayList<Event>();
-
-        Event event = new Event("Career Fair", true);
-        eventsList.add(event);
-        event = new Event("Fair 1", true);
-        eventsList.add(event);
-        event = new Event("Fair 2", false);
-        eventsList.add(event);
-        event = new Event("Fair 3", false);
-        eventsList.add(event);
-        event = new Event("Fair 4", false);
-        eventsList.add(event);
-        event = new Event("Fair 5", false);
-        eventsList.add(event);
-        event = new Event("Fair 6", false);
-        eventsList.add(event);
-        event = new Event("Fair 7", false);
-        eventsList.add(event);
-        event = new Event("Fair 8", false);
-        eventsList.add(event);
-        event = new Event("Fair 9", false);
-        eventsList.add(event);
-        event = new Event("Fair 10", false);
-        eventsList.add(event);
-        event = new Event("Fair 11", false);
-        eventsList.add(event);
-        event = new Event("Fair 12", false);
-        eventsList.add(event);
-
-        return eventsList;
-
-    }
-
-
+    public static DataModel data = new DataModel();
     public final static String EXTRA_MESSAGE = "eventname";
 
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";

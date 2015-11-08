@@ -84,15 +84,16 @@ public class EventPrefs extends AppCompatActivity {
 
     public void onSave(View view){
         //save the changes to the checkboxes maybe use sharedpreferences
-        MainActivity.data = data;
+
         finish();
     }
-
+    /*
     public void onCancel(View view){
 
+        MainActivity.data.setEvents(ev);
         finish();
     }
-
+    */
 
     public class MyAdapter extends ArrayAdapter<Event> {
 

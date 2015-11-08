@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".EventPrefs" android:label="Event Preferences" />
         <activity android:name=".WebViewActivity" android:label="WebView Activity" />
+        <activity android:name=".MainEventActivity" android:label="Event Activity" />
     </application>
 
 </manifest>

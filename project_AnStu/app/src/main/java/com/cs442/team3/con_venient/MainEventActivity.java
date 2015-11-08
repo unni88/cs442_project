@@ -1,5 +1,6 @@
 package com.cs442.team3.con_venient;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -28,10 +29,12 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_event);
+        Intent intent = getIntent();
+        String eventname = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         drawerLayout = (DrawerLayout)findViewById(R.id.drawerlayout);
         navList = (ListView)findViewById(R.id.navlist);
         ArrayList<String> navArray = new ArrayList<String>();
-        navArray.add("Home");
+        navArray.add(eventname);
         navArray.add("Booth List");
         navArray.add("Event Map");
         navArray.add("Fragment 3");
@@ -134,10 +137,11 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
 
     @Override
     public void onBackPressed() {
-        navList.setItemChecked(0,true);
+        finish();
+        /*navList.setItemChecked(0,true);
         EventHomeFragment eventHomeFragment = new EventHomeFragment();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentholder, eventHomeFragment);
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();*/
     }
 }

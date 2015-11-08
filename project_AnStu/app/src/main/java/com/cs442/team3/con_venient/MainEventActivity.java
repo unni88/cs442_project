@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -59,6 +60,9 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         fragmentManager = getSupportFragmentManager();
+
+        TextView textv = (TextView)findViewById(R.id.event_home);
+        textv.setText(eventname);
 
         loadSelection(0);
     }

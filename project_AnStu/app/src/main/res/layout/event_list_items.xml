@@ -12,7 +12,7 @@
         android:focusableInTouchMode="false"
         android:text=""
 
-        android:textSize="36dp" />
+        android:textSize="30dp" />
 
     <TextView
         android:layout_width="match_parent"

@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".EventPrefs" android:label="Event Preferences" />
+        <activity android:name=".WebViewActivity" android:label="WebView Activity" />
     </application>
 
 </manifest>

@@ -88,9 +88,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(this, "Content:" + contents, Toast.LENGTH_SHORT);
                 toast.show();
 
-                WebView wv = (WebView) findViewById(R.id.webView);
-                wv.getSettings().setJavaScriptEnabled(true);
-                wv.loadUrl(contents);
+                Intent webviewActivity = new Intent(getBaseContext(), WebViewActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("weblink", contents);
+                webviewActivity.putExtras(bundle);
+                startActivity(webviewActivity);
             }
         }
     }

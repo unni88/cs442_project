@@ -11,9 +11,9 @@ public class Booth {
     String contactInfo = null;
     String descriptions = null;
 
-    public Booth(int id, String name, String website, String contactInfo, String descriptions){
+    public Booth( String name, String website, String contactInfo, String descriptions){
         super();
-        this.id = id;
+        //this.id = id;
         this.name = name;
         this.website = website;
         this.contactInfo = contactInfo;

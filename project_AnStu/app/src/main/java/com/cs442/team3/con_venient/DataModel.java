@@ -8,9 +8,15 @@ public class DataModel {
 
 
     public void hardCoded(){
+        /*
+        this.name = name;
+        this.website = website;
+        this.contactInfo = contactInfo;
+        this.descriptions = descriptions;*/
 
         ArrayList<Event> eventsList = new ArrayList<Event>();
         Event event = new Event("Career Fair", false);
+            event.booths.add(new Booth("Google","www.google.com", "888-656-4323", "google is hiring ...."));
         eventsList.add(event);
         event = new Event("Fair 1", false);
         eventsList.add(event);

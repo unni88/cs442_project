@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static DataModel data = new DataModel();
     public final static String EXTRA_MESSAGE = "eventname";
-
+    private ArrayAdapter<String> adapter;
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     //public ArrayList<Event> events = new ArrayList<Event>()
 
@@ -141,10 +141,9 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, events);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, events);
         ListView listview=(ListView) findViewById(R.id.eventList);
         listview.setAdapter(adapter);
-
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -166,36 +165,8 @@ public class MainActivity extends AppCompatActivity {
         data.exportData(this);
     }
     public void ImportBtnClicked(View view) {
-        /*if (!isExternalStorageWritable())
-            Toast.makeText(this,"SD Card is unmounted.",Toast.LENGTH_LONG).show();
-        else{
-            //Toast.makeText(this,"SD Card is mounted.",Toast.LENGTH_LONG).show();
-            File file = new File(this.getExternalFilesDir(null),"A5_ToDoList.txt");
-            try {
-                todoItems.clear();
-                FileReader fr = new FileReader(file);
-                BufferedReader br = new BufferedReader(fr);
-                String line;
-                while((line = br.readLine())!=null) {
-                    StringTokenizer temp = new StringTokenizer(line, "\t");
-                    int counter = Integer.parseInt(temp.nextToken());
-                    String task = temp.nextToken();
-                    Date created;
-                    try {
-                        created = sdf.parse(temp.nextToken());
-                    } catch (ParseException e) {
-                        created = new Date(java.lang.System.currentTimeMillis());
-                    }
-                    ToDoItem newTodoItem = new ToDoItem(task, created);
-                    newTodoItem.setNum(counter);
-                    todoItems.add(todoItems.size(), newTodoItem);
-                }
-                aa.notifyDataSetChanged();
-                fr.close();
-            } catch (IOException e) {
-                Log.w("ExternalStorage", "Error reading " + file, e);
-            }
-        }*/
+        data.importData(this);
+        adapter.notifyDataSetChanged();
     }
 
 }

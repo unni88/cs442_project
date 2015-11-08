@@ -11,11 +11,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -85,6 +87,10 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast toast = Toast.makeText(this, "Content:" + contents, Toast.LENGTH_SHORT);
                 toast.show();
+
+                WebView wv = (WebView) findViewById(R.id.webView);
+                wv.getSettings().setJavaScriptEnabled(true);
+                wv.loadUrl(contents);
             }
         }
     }

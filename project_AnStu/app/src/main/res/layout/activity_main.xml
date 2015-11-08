@@ -18,11 +18,14 @@
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:text="Import"
         android:layout_centerInParent="true"
-        android:layout_below="@id/eventList" />
+        android:layout_below="@id/eventList"
+        android:onClick="ImportBtnClicked"/>
+
     <Button android:id="@+id/Export" style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:text="Export"
         android:layout_centerInParent="true"
-        android:layout_below="@id/Import" />
+        android:layout_below="@id/Import"
+        android:onClick="ExportBtnClicked"/>
 </RelativeLayout>
 

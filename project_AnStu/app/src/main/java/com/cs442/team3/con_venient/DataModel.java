@@ -5,10 +5,14 @@ import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.StringTokenizer;
 
 public class DataModel {
 
@@ -61,20 +65,22 @@ public class DataModel {
     public void setEvents(ArrayList<MyEvent> events){
         this.events = events;
     }
+
     public void exportData(Context context){
-        /*if (!isExternalStorageWritable())
+        if (!isExternalStorageWritable())
             Toast.makeText(context,"SD Card is unmounted.",Toast.LENGTH_LONG).show();
         else {
-            //Toast.makeText(this,"SD Card is mounted.",Toast.LENGTH_LONG).show();
-            File file = new File(context.getExternalFilesDir(null), "A5_ToDoList.txt");
+            //Toast.makeText(context,"SD Card is mounted.",Toast.LENGTH_LONG).show();
+            File file = new File(context.getExternalFilesDir(null), "con_venient.txt");
 
-            //Toast.makeText(this,"Path: "+this.getExternalFilesDir(null).getPath(),Toast.LENGTH_LONG).show();
+            //Toast.makeText(context,"Path: "+context.getExternalFilesDir(null).getPath(),Toast.LENGTH_LONG).show();
             try {
-                Iterator<> i = todoItems.iterator();
+                Iterator<MyEvent> i = events.iterator();
                 String result = "";
                 while (i.hasNext()) {
-                    ToDoItem temp = i.next();
-                    result += temp.storeItem() + "\n";
+                    MyEvent temp = i.next();
+                    if(temp.isSelected())
+                    result += temp.getName() + "\n";
                 }
                 FileWriter fw = new FileWriter(file);
                 fw.write(result);
@@ -83,7 +89,34 @@ public class DataModel {
             } catch (IOException e) {
                 Log.w("ExternalStorage", "Error writing " + file, e);
             }
-        }*/
+        }
+    }
+
+    public void importData(Context context){
+        if (!isExternalStorageWritable())
+            Toast.makeText(context,"SD Card is unmounted.",Toast.LENGTH_LONG).show();
+        else{
+            //Toast.makeText(context,"SD Card is mounted.",Toast.LENGTH_LONG).show();
+            File file = new File(context.getExternalFilesDir(null),"con_venient.txt");
+            try {
+                FileReader fr = new FileReader(file);
+                BufferedReader br = new BufferedReader(fr);
+                String eventname;
+                while((eventname = br.readLine())!=null) {
+                    Iterator<MyEvent> i = events.iterator();
+                    while (i.hasNext()) {
+                        MyEvent temp = i.next();
+                        if (temp.getName().equalsIgnoreCase(eventname)) {
+                            temp.selected = true;
+                            continue;
+                        }
+                    }
+                }
+                fr.close();
+            } catch (IOException e) {
+                Log.w("ExternalStorage", "Error reading " + file, e);
+            }
+        }
     }
 
     /* Checks if external storage is available for read and write */

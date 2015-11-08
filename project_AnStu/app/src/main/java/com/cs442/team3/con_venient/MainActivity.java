@@ -25,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
 
     public static DataModel data = new DataModel();
     public final static String EXTRA_MESSAGE = "eventname";
-<<<<<<< HEAD
+
     public static String e_name = "";
-=======
+
     private ArrayAdapter<String> adapter;
 
     public final static MyEvent EVENT_HOME = new MyEvent("",false,"","");
->>>>>>> 7c28ca98af40a5c399f25bd94d8537f8c17beff5
+
 
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     //public ArrayList<Event> events = new ArrayList<Event>()

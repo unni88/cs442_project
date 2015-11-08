@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static DataModel data = new DataModel();
     public final static String EXTRA_MESSAGE = "eventname";
+    public final static MyEvent EVENT_HOME = new MyEvent("",false,"","");
 
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     //public ArrayList<Event> events = new ArrayList<Event>()

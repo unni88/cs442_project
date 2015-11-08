@@ -39,17 +39,19 @@ public class EventHomeFragment extends Fragment {
         ArrayList<MyEvent> events = MainActivity.data.getEvents();
         MyEvent ev = new MyEvent("", false, "", "");
         String s = "";
-        Toast.makeText(this.events.get(1).getName(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(),MainActivity.EXTRA_MESSAGE,Toast.LENGTH_LONG).show();
+        //Toast.makeText(getActivity(),events.get(1).getName(),Toast.LENGTH_SHORT).show();
         for (int i = 0; i < events.size(); i++){
             if (name.equals(events.get(i).getName())) {
+                Toast.makeText(getActivity(),"works",Toast.LENGTH_LONG).show();
                 ev = events.get(i);
             }
         }
-
+        String s1 = "Event Name: "+ev.getName();
         String s2 = "Location: "+ev.getLocation();
         String s3 = "Date and Time: "+ ev.getDateTime();
 
-        s= s2+"\n\n"+s3+"\n\n";
+        s= s1+"\n\n"+s2+"\n\n"+s3;
         return s;
     }
 

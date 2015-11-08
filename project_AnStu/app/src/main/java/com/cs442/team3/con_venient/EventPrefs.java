@@ -4,7 +4,6 @@ package com.cs442.team3.con_venient;
  * Created by wmei on 10/31/15.
  */
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -63,7 +62,7 @@ public class EventPrefs extends AppCompatActivity {
 
 
 
-        ArrayList<Event> eventsList = data.getEvents();
+        ArrayList<MyEvent> eventsList = data.getEvents();
         //dummy list
 
         //creates an arrayadapter from the string array
@@ -76,7 +75,7 @@ public class EventPrefs extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //when clicked it will show a toast.
-                Event event = (Event) parent.getItemAtPosition(position);
+                MyEvent event = (MyEvent) parent.getItemAtPosition(position);
                 Toast.makeText(getApplicationContext(), "Clicked " + event.getName(), Toast.LENGTH_LONG).show();
             }
         });
@@ -95,14 +94,14 @@ public class EventPrefs extends AppCompatActivity {
     }
     */
 
-    public class MyAdapter extends ArrayAdapter<Event> {
+    public class MyAdapter extends ArrayAdapter<MyEvent> {
 
-        private ArrayList<Event> eventList;
+        private ArrayList<MyEvent> eventList;
 
-        public MyAdapter(Context context, int textViewResourceid, ArrayList<Event> eventList){
+        public MyAdapter(Context context, int textViewResourceid, ArrayList<MyEvent> eventList){
             super(context, textViewResourceid,eventList);
 
-            this.eventList = new ArrayList<Event>();
+            this.eventList = new ArrayList<MyEvent>();
             this.eventList.addAll(eventList);
 
         }
@@ -129,7 +128,7 @@ public class EventPrefs extends AppCompatActivity {
                 holder.name1.setOnClickListener(new View.OnClickListener(){
                     public void onClick(View v){
                         CheckBox cb = (CheckBox) v;
-                        Event event = (Event) cb.getTag();
+                        MyEvent event = (MyEvent) cb.getTag();
                         //Toast.makeText(getApplicationContext(),"Clicked "+cb.getText() + " is " +cb.isChecked(), Toast.LENGTH_SHORT).show();
                         event.setSelected(cb.isChecked());
                     }
@@ -139,7 +138,7 @@ public class EventPrefs extends AppCompatActivity {
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            Event event = eventList.get(position);
+            MyEvent event = eventList.get(position);
             // holder.name.setText("");
             holder.name1.setText(event.getName());
             holder.name1.setChecked(event.isSelected());

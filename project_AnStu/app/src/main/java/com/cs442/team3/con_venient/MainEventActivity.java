@@ -60,8 +60,10 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
         actionBar.setDisplayHomeAsUpEnabled(true);
         fragmentManager = getSupportFragmentManager();
 
+
         loadSelection(0);
     }
+
 
     private void loadSelection(int i){
         navList.setItemChecked(i,true);

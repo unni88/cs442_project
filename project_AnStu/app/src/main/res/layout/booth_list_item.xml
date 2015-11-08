@@ -3,15 +3,10 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/booth_searchBar"
-        android:hint="Search"/>
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/booth_list" />
+        android:id="@+id/txtitem"
+        android:padding="10dp"/>
 
 </LinearLayout>

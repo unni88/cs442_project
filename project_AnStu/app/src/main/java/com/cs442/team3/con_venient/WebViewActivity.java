@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 public class WebViewActivity extends AppCompatActivity {
@@ -23,6 +24,7 @@ public class WebViewActivity extends AppCompatActivity {
 
         WebView wv = (WebView)findViewById(R.id.webView);
         wv.getSettings().setJavaScriptEnabled(true);
+        wv.setWebViewClient(new WebViewClient());
         wv.loadUrl(weblink);
     }
 

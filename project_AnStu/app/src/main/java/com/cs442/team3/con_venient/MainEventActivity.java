@@ -173,8 +173,8 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
         downloadDialog.setMessage(message);
         downloadDialog.setPositiveButton(buttonYes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogInterface, int i) {
-                Uri uri = Uri.parse("market://search?q=pname:" + "com.google.zxing.client.android");
-                //Uri uri = Uri.parse("market://search?q=pname:" + "me.scan.android.client&hl=en");
+                //Uri uri = Uri.parse("market://search?q=pname:" + "com.google.zxing.client.android");
+                Uri uri = Uri.parse("market://search?q=pname:" + "tw.com.quickmark&hl=en");
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 try {
                     act.startActivity(intent);

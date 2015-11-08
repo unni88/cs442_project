@@ -6,8 +6,10 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,8 +21,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -109,8 +114,8 @@ public class MainActivity extends AppCompatActivity {
         downloadDialog.setMessage(message);
         downloadDialog.setPositiveButton(buttonYes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogInterface, int i) {
-                Uri uri = Uri.parse("market://search?q=pname:" + "com.google.zxing.client.android");
-                //Uri uri = Uri.parse("market://search?q=pname:" + "me.scan.android.client&hl=en");
+                //Uri uri = Uri.parse("market://search?q=pname:" + "com.google.zxing.client.android");
+                Uri uri = Uri.parse("market://search?q=pname:" + "tw.com.quickmark&hl=en");
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 try {
                     act.startActivity(intent);
@@ -162,67 +167,43 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-        /*
-        // The desired columns to be bound
-        String[] columns = new String[] {
-                CountriesDb.KEY_CODE,
-                CountriesDb.KEY_NAME,
-                CountriesDb.KEY_CONTINENT
-        };
-
-        // the XML defined views which the data will be bound to
-        int[] to = new int[] {
-                R.id.code,
-                R.id.name,
-                R.id.continent,
-        };
-
-        // create an adapter from the SimpleCursorAdapter
-        dataAdapter = new SimpleCursorAdapter(
-                this,
-                R.layout.country_info,
-                null,
-                columns,
-                to,
-                0);
-
-        // get reference to the ListView
-        ListView listView = (ListView) findViewById(R.id.countryList);
-        // Assign adapter to ListView
-        listView.setAdapter(dataAdapter);
-        //Ensures a loader is initialized and active.
-        getLoaderManager().initLoader(0, null, this);
-
-
-        listView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> listView, View view,
-                                    int position, long id) {
-                // Get the cursor, positioned to the corresponding row in the result set
-                Cursor cursor = (Cursor) listView.getItemAtPosition(position);
-
-                // display the selected country
-                String countryCode =
-                        cursor.getString(cursor.getColumnIndexOrThrow(CountriesDb.KEY_CODE));
-                Toast.makeText(getApplicationContext(),
-                        countryCode, Toast.LENGTH_SHORT).show();
-
-                String rowId =
-                        cursor.getString(cursor.getColumnIndexOrThrow(CountriesDb.KEY_ROWID));
-
-                // starts a new Intent to update/delete a Country
-                // pass in row Id to create the Content URI for a single row
-                Intent countryEdit = new Intent(getBaseContext(), CountryEdit.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("mode", "update");
-                bundle.putString("rowId", rowId);
-                countryEdit.putExtras(bundle);
-                startActivity(countryEdit);
-
-            }
-        });*/
-
     }
+
+    public void ExportBtnClicked(View view) {
+        data.exportData(this);
+    }
+    public void ImportBtnClicked(View view) {
+        /*if (!isExternalStorageWritable())
+            Toast.makeText(this,"SD Card is unmounted.",Toast.LENGTH_LONG).show();
+        else{
+            //Toast.makeText(this,"SD Card is mounted.",Toast.LENGTH_LONG).show();
+            File file = new File(this.getExternalFilesDir(null),"A5_ToDoList.txt");
+            try {
+                todoItems.clear();
+                FileReader fr = new FileReader(file);
+                BufferedReader br = new BufferedReader(fr);
+                String line;
+                while((line = br.readLine())!=null) {
+                    StringTokenizer temp = new StringTokenizer(line, "\t");
+                    int counter = Integer.parseInt(temp.nextToken());
+                    String task = temp.nextToken();
+
+                    Date created;
+                    try {
+                        created = sdf.parse(temp.nextToken());
+                    } catch (ParseException e) {
+                        created = new Date(java.lang.System.currentTimeMillis());
+                    }
+                    ToDoItem newTodoItem = new ToDoItem(task, created);
+                    newTodoItem.setNum(counter);
+                    todoItems.add(todoItems.size(), newTodoItem);
+                }
+                aa.notifyDataSetChanged();
+                fr.close();
+            } catch (IOException e) {
+                Log.w("ExternalStorage", "Error reading " + file, e);
+            }
+        }*/
+    }
+
 }

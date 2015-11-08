@@ -20,6 +20,42 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static DataModel data = new DataModel(MainActivity.event());
+
+    private static ArrayList<Event> event(){
+        ArrayList<Event> eventsList = new ArrayList<Event>();
+
+        Event event = new Event("Career Fair", true);
+        eventsList.add(event);
+        event = new Event("Fair 1", true);
+        eventsList.add(event);
+        event = new Event("Fair 2", false);
+        eventsList.add(event);
+        event = new Event("Fair 3", false);
+        eventsList.add(event);
+        event = new Event("Fair 4", false);
+        eventsList.add(event);
+        event = new Event("Fair 5", false);
+        eventsList.add(event);
+        event = new Event("Fair 6", false);
+        eventsList.add(event);
+        event = new Event("Fair 7", false);
+        eventsList.add(event);
+        event = new Event("Fair 8", false);
+        eventsList.add(event);
+        event = new Event("Fair 9", false);
+        eventsList.add(event);
+        event = new Event("Fair 10", false);
+        eventsList.add(event);
+        event = new Event("Fair 11", false);
+        eventsList.add(event);
+        event = new Event("Fair 12", false);
+        eventsList.add(event);
+
+        return eventsList;
+
+    }
+
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     //public ArrayList<Event> events = new ArrayList<Event>()
 
@@ -110,11 +146,24 @@ public class MainActivity extends AppCompatActivity {
         });
         return downloadDialog.show();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        displayListView();
+    }
+
     private void displayListView() {
 
         ArrayList<String> events = new ArrayList<String>();
-        events.add("Event1");
-        events.add("Event2");
+        ArrayList<Event> eventOb = data.getEvents();
+
+        for (int i=0;i< eventOb.size();i++){
+            Event ev = eventOb.get(i);
+            if(ev.isSelected())
+                events.add(ev.getName());
+
+        }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, events);
         ListView listview=(ListView) findViewById(R.id.eventList);

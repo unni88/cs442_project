@@ -29,7 +29,9 @@ public class EventHomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_event_home, container, false);
 
         TextView textv = (TextView)view.findViewById(R.id.event_home);
-        textv.setText(eventHomeDetails(MainActivity.EXTRA_MESSAGE));
+        String en = MainActivity.e_name;
+        Toast.makeText(getActivity(),MainActivity.e_name,Toast.LENGTH_LONG).show();
+        textv.setText(eventHomeDetails(en));
         // Inflate the layout for this fragment
         return view;
 
@@ -43,7 +45,7 @@ public class EventHomeFragment extends Fragment {
         //Toast.makeText(getActivity(),events.get(1).getName(),Toast.LENGTH_SHORT).show();
         for (int i = 0; i < events.size(); i++){
             if (name.equals(events.get(i).getName())) {
-                Toast.makeText(getActivity(),"works",Toast.LENGTH_LONG).show();
+               // Toast.makeText(getActivity(),"works",Toast.LENGTH_LONG).show();
                 ev = events.get(i);
             }
         }

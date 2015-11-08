@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static DataModel data = new DataModel();
     public final static String EXTRA_MESSAGE = "eventname";
-    public final static MyEvent EVENT_HOME = new MyEvent("",false,"","");
+    public static String e_name = "";
 
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     //public ArrayList<Event> events = new ArrayList<Event>()
@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                                     long id) {
 
                 String item = ((TextView) view).getText().toString();
-
+                e_name = item;
                 Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(MainActivity.this, MainEventActivity.class);

@@ -11,14 +11,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
 
     public static DataModel data = new DataModel(MainActivity.event());
 
@@ -55,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
         return eventsList;
 
     }
+
+
+    public final static String EXTRA_MESSAGE = "eventname";
 
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     //public ArrayList<Event> events = new ArrayList<Event>()
@@ -121,6 +129,12 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast toast = Toast.makeText(this, "Content:" + contents, Toast.LENGTH_SHORT);
                 toast.show();
+
+                Intent webviewActivity = new Intent(getBaseContext(), WebViewActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("weblink", contents);
+                webviewActivity.putExtras(bundle);
+                startActivity(webviewActivity);
             }
         }
     }
@@ -168,6 +182,24 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, events);
         ListView listview=(ListView) findViewById(R.id.eventList);
         listview.setAdapter(adapter);
+
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+
+                String item = ((TextView) view).getText().toString();
+
+                Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(MainActivity.this, MainEventActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, item);
+                startActivity(intent);
+            }
+        });
+
+
         /*
         // The desired columns to be bound
         String[] columns = new String[] {

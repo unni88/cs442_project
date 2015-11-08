@@ -1,5 +1,11 @@
 package com.cs442.team3.con_venient;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,6 +19,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -23,15 +30,18 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
     private ListView navList;
     private FragmentTransaction fragmentTransaction;
     private FragmentManager fragmentManager;
+    static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_event);
+        Intent intent = getIntent();
+        String eventname = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         drawerLayout = (DrawerLayout)findViewById(R.id.drawerlayout);
         navList = (ListView)findViewById(R.id.navlist);
         ArrayList<String> navArray = new ArrayList<String>();
-        navArray.add("Home");
+        navArray.add(eventname);
         navArray.add("Booth List");
         navArray.add("Event Map");
         navArray.add("Fragment 3");
@@ -100,7 +110,7 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main_event, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -114,15 +124,69 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        }else if (id == android.R.id.home){
+        }
+        if (id == android.R.id.home){
             if (drawerLayout.isDrawerOpen(navList)){
                 drawerLayout.closeDrawer(navList);
             }else{
                 drawerLayout.openDrawer(navList);
             }
         }
+        if (id ==R.id.action_QRCode){
+            try {
+                //start the scanning activity from the com.google.zxing.client.android.SCAN intent
+                Intent intent = new Intent(ACTION_SCAN);
+                intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+                startActivityForResult(intent, 0);
+            } catch (ActivityNotFoundException anfe) {
+                //on catch, show the download dialog
+                showDialog(MainEventActivity.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
+            }
+        }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //on ActivityResult method
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                //get the extras that are returned from the intent
+                String contents = intent.getStringExtra("SCAN_RESULT");
+                String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+
+                Toast toast = Toast.makeText(this, "Content:" + contents, Toast.LENGTH_SHORT);
+                toast.show();
+
+                Intent webviewActivity = new Intent(getBaseContext(), WebViewActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("weblink", contents);
+                webviewActivity.putExtras(bundle);
+                startActivity(webviewActivity);
+            }
+        }
+    }
+    //alert dialog for downloadDialog
+    private static AlertDialog showDialog(final Activity act, CharSequence title, CharSequence message, CharSequence buttonYes, CharSequence buttonNo) {
+        AlertDialog.Builder downloadDialog = new AlertDialog.Builder(act);
+        downloadDialog.setTitle(title);
+        downloadDialog.setMessage(message);
+        downloadDialog.setPositiveButton(buttonYes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Uri uri = Uri.parse("market://search?q=pname:" + "com.google.zxing.client.android");
+                //Uri uri = Uri.parse("market://search?q=pname:" + "me.scan.android.client&hl=en");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                try {
+                    act.startActivity(intent);
+                } catch (ActivityNotFoundException anfe) {
+                }
+            }
+        });
+        downloadDialog.setNegativeButton(buttonNo, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        return downloadDialog.show();
     }
 
     @Override
@@ -134,10 +198,11 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
 
     @Override
     public void onBackPressed() {
-        navList.setItemChecked(0,true);
+        finish();
+        /*navList.setItemChecked(0,true);
         EventHomeFragment eventHomeFragment = new EventHomeFragment();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentholder, eventHomeFragment);
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();*/
     }
 }

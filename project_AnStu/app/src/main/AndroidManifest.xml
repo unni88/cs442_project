@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cs442.team3.con_venient" >
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,6 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".EventPrefs" android:label="Event Preferences" />
+        <activity android:name=".WebViewActivity" android:label="WebView Activity" />
+        <activity android:name=".MainEventActivity" android:label="Event Activity" />
     </application>
 
 </manifest>

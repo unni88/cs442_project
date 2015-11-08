@@ -3,9 +3,17 @@ package com.cs442.team3.con_venient;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 /**
@@ -17,6 +25,16 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class EventBoothsFragment extends Fragment {
+
+    String[] items;
+
+    ArrayList<String> listItems;
+
+    ArrayAdapter<String> adapter;
+
+    ListView listView;
+
+    EditText editText;
 
     public EventBoothsFragment() {
         // Required empty public constructor
@@ -35,8 +53,52 @@ public class EventBoothsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View layout = inflater.inflate(R.layout.booth_list, container, false);
+        listView = (ListView) layout.findViewById(R.id.booth_listview);
+        editText = (EditText) layout.findViewById(R.id.booth_searchBar);
+        initList();
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().equals("")){
+                    //reset listview
+                    initList();
+                }else {
+                    //preform search
+                    searchItem(s.toString());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_event_booths, container, false);
+        return layout;
+
+    }
+
+    public void searchItem(String textToSearch){
+        for(String item:items){
+            if(!item.contains(textToSearch)){
+                listItems.remove(item);
+            }
+        }
+        adapter.notifyDataSetChanged();
+    }
+
+    public void initList(){
+        items=new String[]{"Booth1", "Canada","China","Japan","USA"};
+        listItems=new ArrayList<>(Arrays.asList(items));
+        adapter = new ArrayAdapter<String>(getActivity(),
+                R.layout.booth_list_item, R.id.txtitem, listItems);
+        listView.setAdapter(adapter);
     }
 
     @Override

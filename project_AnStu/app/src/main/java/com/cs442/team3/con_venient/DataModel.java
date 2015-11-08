@@ -65,14 +65,15 @@ public class DataModel {
     public void setEvents(ArrayList<MyEvent> events){
         this.events = events;
     }
+
     public void exportData(Context context){
         if (!isExternalStorageWritable())
             Toast.makeText(context,"SD Card is unmounted.",Toast.LENGTH_LONG).show();
         else {
-            //Toast.makeText(this,"SD Card is mounted.",Toast.LENGTH_LONG).show();
+            //Toast.makeText(context,"SD Card is mounted.",Toast.LENGTH_LONG).show();
             File file = new File(context.getExternalFilesDir(null), "con_venient.txt");
 
-            //Toast.makeText(this,"Path: "+this.getExternalFilesDir(null).getPath(),Toast.LENGTH_LONG).show();
+            //Toast.makeText(context,"Path: "+context.getExternalFilesDir(null).getPath(),Toast.LENGTH_LONG).show();
             try {
                 Iterator<MyEvent> i = events.iterator();
                 String result = "";
@@ -95,8 +96,8 @@ public class DataModel {
         if (!isExternalStorageWritable())
             Toast.makeText(context,"SD Card is unmounted.",Toast.LENGTH_LONG).show();
         else{
-            //Toast.makeText(this,"SD Card is mounted.",Toast.LENGTH_LONG).show();
-            File file = new File(context.getExternalFilesDir(null),"A5_ToDoList.txt");
+            //Toast.makeText(context,"SD Card is mounted.",Toast.LENGTH_LONG).show();
+            File file = new File(context.getExternalFilesDir(null),"con_venient.txt");
             try {
                 FileReader fr = new FileReader(file);
                 BufferedReader br = new BufferedReader(fr);

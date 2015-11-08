@@ -25,12 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static DataModel data = new DataModel();
     public final static String EXTRA_MESSAGE = "eventname";
-<<<<<<< HEAD
     private ArrayAdapter<String> adapter;
-=======
     public final static MyEvent EVENT_HOME = new MyEvent("",false,"","");
 
->>>>>>> 99d530ddc108003cac290f01e234ca4c2f5ff2e6
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     //public ArrayList<Event> events = new ArrayList<Event>()
 
@@ -171,7 +168,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void ImportBtnClicked(View view) {
         data.importData(this);
-        adapter.notifyDataSetChanged();
+        displayListView();
+        //adapter.notifyDataSetChanged();
     }
 
 }

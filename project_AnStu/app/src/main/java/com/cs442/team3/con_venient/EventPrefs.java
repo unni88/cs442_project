@@ -104,13 +104,14 @@ public class EventPrefs extends AppCompatActivity {
         });
     }
 
-    private void onSave(View view){
+    public void onSave(View view){
         //save the changes to the checkboxes maybe use sharedpreferences
 
         finish();
     }
 
-    private void onCancel(View view){
+    public void onCancel(View view){
+
         finish();
     }
 

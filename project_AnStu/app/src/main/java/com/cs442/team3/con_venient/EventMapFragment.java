@@ -1,11 +1,17 @@
 package com.cs442.team3.con_venient;
 
 import android.app.Activity;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 /**
@@ -36,8 +42,19 @@ public class EventMapFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_event_map, container, false);
+
+        ImageView imagev = (ImageView)view.findViewById(R.id.map_image);
+        String en = MainActivity.e_name;
+        ArrayList<MyEvent> events = MainActivity.data.getEvents();
+        for (int i = 0; i < events.size(); i++){
+            if (en.equals(events.get(i).getName())) {
+                // Toast.makeText(getActivity(),"works",Toast.LENGTH_LONG).show();
+                imagev.setImageResource(R.drawable.hermann_hall_map);
+            }
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_event_map, container, false);
+        return view;
     }
 
     @Override

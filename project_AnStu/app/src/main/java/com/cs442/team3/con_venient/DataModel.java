@@ -1,5 +1,13 @@
 package com.cs442.team3.con_venient;
 
+import android.content.Context;
+import android.os.Environment;
+import android.util.Log;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class DataModel {
@@ -52,5 +60,35 @@ public class DataModel {
 
     public void setEvents(ArrayList<MyEvent> events){
         this.events = events;
+    }
+    public void exportData(Context context){
+        /*if (!isExternalStorageWritable())
+            Toast.makeText(context,"SD Card is unmounted.",Toast.LENGTH_LONG).show();
+        else {
+            //Toast.makeText(this,"SD Card is mounted.",Toast.LENGTH_LONG).show();
+            File file = new File(context.getExternalFilesDir(null), "A5_ToDoList.txt");
+
+            //Toast.makeText(this,"Path: "+this.getExternalFilesDir(null).getPath(),Toast.LENGTH_LONG).show();
+            try {
+                Iterator<> i = todoItems.iterator();
+                String result = "";
+                while (i.hasNext()) {
+                    ToDoItem temp = i.next();
+                    result += temp.storeItem() + "\n";
+                }
+                FileWriter fw = new FileWriter(file);
+                fw.write(result);
+                fw.close();
+                Toast.makeText(context,"ToDoList exported.",Toast.LENGTH_SHORT).show();
+            } catch (IOException e) {
+                Log.w("ExternalStorage", "Error writing " + file, e);
+            }
+        }*/
+    }
+
+    /* Checks if external storage is available for read and write */
+    public boolean isExternalStorageWritable() {
+        Boolean state = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+        return state;
     }
 }

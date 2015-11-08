@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class DataModel {
 
-    ArrayList<Event> events = new ArrayList<Event>();
+    ArrayList<MyEvent> events = new ArrayList<MyEvent>();
 
 
     public void hardCoded(){
@@ -14,33 +14,27 @@ public class DataModel {
         this.contactInfo = contactInfo;
         this.descriptions = descriptions;*/
 
-        ArrayList<Event> eventsList = new ArrayList<Event>();
-        Event event = new Event("Career Fair", false);
+        ArrayList<MyEvent> eventsList = new ArrayList<MyEvent>();
+        MyEvent event = new MyEvent("Career Fair", false,"Hermann Hall, 3241 S Federal St, Chicago, IL 60616","Wednesday, October 7, 1-5 pm ");
             event.booths.add(new Booth("Google","www.google.com", "888-656-4323", "google is hiring ...."));
         eventsList.add(event);
-        event = new Event("Fair 1", false);
+        event = new MyEvent("Fair 1", false,"location1","dateTime1");
         eventsList.add(event);
-        event = new Event("Fair 2", false);
+        event = new MyEvent("Fair 2", false,"location2","dateTime2");
         eventsList.add(event);
-        event = new Event("Fair 3", false);
+        event = new MyEvent("Fair 3", false,"location3","dateTime3");
         eventsList.add(event);
-        event = new Event("Fair 4", false);
+        event = new MyEvent("Fair 4", false,"location4","dateTime4");
         eventsList.add(event);
-        event = new Event("Fair 5", false);
+        event = new MyEvent("Fair 5", false,"location5","dateTime5");
         eventsList.add(event);
-        event = new Event("Fair 6", false);
+        event = new MyEvent("Fair 6", false,"location6","dateTime6");
         eventsList.add(event);
-        event = new Event("Fair 7", false);
+        event = new MyEvent("Fair 7", false,"location7","dateTime7");
         eventsList.add(event);
-        event = new Event("Fair 8", false);
+        event = new MyEvent("Fair 8", false,"location8","dateTime8");
         eventsList.add(event);
-        event = new Event("Fair 9", false);
-        eventsList.add(event);
-        event = new Event("Fair 10", false);
-        eventsList.add(event);
-        event = new Event("Fair 11", false);
-        eventsList.add(event);
-        event = new Event("Fair 12", false);
+        event = new MyEvent("Fair 9", false,"location9","dateTime9");
         eventsList.add(event);
 
         events = eventsList;
@@ -52,11 +46,11 @@ public class DataModel {
         this.hardCoded();
     }
 
-    public ArrayList<Event> getEvents(){
+    public ArrayList<MyEvent> getEvents(){
         return events;
     }
 
-    public void setEvents(ArrayList<Event> events){
+    public void setEvents(ArrayList<MyEvent> events){
         this.events = events;
     }
 }

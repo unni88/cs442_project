@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,7 +18,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.net.URL;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -134,10 +132,10 @@ public class MainActivity extends AppCompatActivity {
     private void displayListView() {
 
         ArrayList<String> events = new ArrayList<String>();
-        ArrayList<Event> eventOb = data.getEvents();
+        ArrayList<MyEvent> eventOb = data.getEvents();
 
         for (int i=0;i< eventOb.size();i++){
-            Event ev = eventOb.get(i);
+            MyEvent ev = eventOb.get(i);
             if(ev.isSelected())
                 events.add(ev.getName());
 

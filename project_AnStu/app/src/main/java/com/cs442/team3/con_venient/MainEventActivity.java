@@ -19,7 +19,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -61,10 +60,25 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
         actionBar.setDisplayHomeAsUpEnabled(true);
         fragmentManager = getSupportFragmentManager();
 
-        TextView textv = (TextView)findViewById(R.id.event_home);
-        textv.setText(eventname);
 
         loadSelection(0);
+    }
+
+    private String eventHomeDetails(String name) {
+        ArrayList<MyEvent> events = MainActivity.data.getEvents();
+        MyEvent ev = new MyEvent("", false, "", "");
+        String s = "";
+        for (int i = 0; i < events.size(); i++){
+            if (name.equals(events.get(i).getName()))
+                ev = events.get(i);
+        }
+
+        String s1 = "Company Name: "+ ev.getName();
+        String s2 = "Location: "+ev.getLocation();
+        String s3 = "Date and Time: "+ ev.getDateTime();
+
+        s= s1+"\n\n"+s2+"\n\n"+s3+"\n\n";
+        return s;
     }
 
     private void loadSelection(int i){

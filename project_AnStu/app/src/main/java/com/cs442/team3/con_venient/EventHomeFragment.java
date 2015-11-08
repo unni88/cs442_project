@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -39,15 +40,16 @@ public class EventHomeFragment extends Fragment {
         MyEvent ev = new MyEvent("", false, "", "");
         String s = "";
         for (int i = 0; i < events.size(); i++){
-            if (name.equals(events.get(i).getName()))
+            if (name.equals(events.get(i).getName())) {
+                
                 ev = events.get(i);
+            }
         }
 
-        String s1 = "Company Name: "+ ev.getName();
         String s2 = "Location: "+ev.getLocation();
         String s3 = "Date and Time: "+ ev.getDateTime();
 
-        s= s1+"\n\n"+s2+"\n\n"+s3+"\n\n";
+        s= s2+"\n\n"+s3+"\n\n";
         return s;
     }
 

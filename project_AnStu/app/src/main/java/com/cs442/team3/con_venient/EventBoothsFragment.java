@@ -95,7 +95,9 @@ public class EventBoothsFragment extends Fragment {
 
     public void initList(){
         ArrayList<MyEvent> ev = new ArrayList<MyEvent>();
-        items=new String[]{"Booth1", "Canada","China","Japan","USA"};
+
+        items=new String[]{"ACCO Brands", "Aerotek","BMW Tech Corp","CDK Global","CCC Info Services"};
+
         listItems=new ArrayList<>(Arrays.asList(items));
         adapter = new ArrayAdapter<String>(getActivity(),
                 R.layout.booth_list_item, R.id.txtitem, listItems);

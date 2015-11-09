@@ -94,6 +94,7 @@ public class EventBoothsFragment extends Fragment {
     }
 
     public void initList(){
+        ArrayList<MyEvent> ev = new ArrayList<MyEvent>();
         items=new String[]{"Booth1", "Canada","China","Japan","USA"};
         listItems=new ArrayList<>(Arrays.asList(items));
         adapter = new ArrayAdapter<String>(getActivity(),

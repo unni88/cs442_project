@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        data.importData(this);
         displayListView();
         Button addEvent = (Button)findViewById(R.id.addEvent);
         addEvent.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //needs to populate the events array from data base on create
+    }
+
+    @Override
+    protected void onDestroy() {
+        data.exportData(this);
+        super.onDestroy();
+
+
     }
 
     @Override

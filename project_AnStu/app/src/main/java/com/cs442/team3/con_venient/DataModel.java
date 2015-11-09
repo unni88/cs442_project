@@ -85,7 +85,7 @@ public class DataModel {
                 FileWriter fw = new FileWriter(file);
                 fw.write(result);
                 fw.close();
-                Toast.makeText(context,"ToDoList exported.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"exported.",Toast.LENGTH_SHORT).show();
             } catch (IOException e) {
                 Log.w("ExternalStorage", "Error writing " + file, e);
             }

@@ -5,6 +5,8 @@ import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -39,6 +41,9 @@ public class EventBoothsFragment extends Fragment {
     ListView listView, mlist;
 
     EditText editText;
+
+    private FragmentTransaction fragmentTransaction;
+    private FragmentManager fragmentManager;
 
     public EventBoothsFragment() {
         // Required empty public constructor
@@ -93,9 +98,6 @@ public class EventBoothsFragment extends Fragment {
                 // TODO Auto-generated method stub
                 String chosen = ""+listView.getItemAtPosition(position);
                 Toast.makeText(getActivity(), chosen, Toast.LENGTH_SHORT).show();
-                //String category = categories[position];
-                //Class activityClass = lookupActivityClass_byName(category);
-                //You could lookup by position, but "name" is more general
 
                 //Intent intent = new Intent(getActivity(), activityClass);
                 //startActivity(intent);

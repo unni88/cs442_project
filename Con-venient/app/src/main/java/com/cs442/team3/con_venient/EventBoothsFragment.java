@@ -1,6 +1,8 @@
 package com.cs442.team3.con_venient;
 
 import android.app.Activity;
+import android.app.ListFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -8,9 +10,11 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +36,7 @@ public class EventBoothsFragment extends Fragment {
 
     ArrayAdapter<String> adapter;
 
-    ListView listView;
+    ListView listView, mlist;
 
     EditText editText;
 
@@ -57,6 +61,7 @@ public class EventBoothsFragment extends Fragment {
         listView = (ListView) layout.findViewById(R.id.booth_listview);
         editText = (EditText) layout.findViewById(R.id.booth_searchBar);
         initList();
+
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -65,10 +70,10 @@ public class EventBoothsFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().equals("")){
+                if (s.toString().equals("")) {
                     //reset listview
                     initList();
-                }else {
+                } else {
                     //preform search
                     searchItem(s.toString());
                 }
@@ -79,10 +84,30 @@ public class EventBoothsFragment extends Fragment {
 
             }
         });
-        // Inflate the layout for this fragment
-        return layout;
 
-    }
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1,
+                                    int position, long arg3) {
+                // TODO Auto-generated method stub
+                String chosen = ""+listView.getItemAtPosition(position);
+                Toast.makeText(getActivity(), chosen, Toast.LENGTH_SHORT).show();
+                //String category = categories[position];
+                //Class activityClass = lookupActivityClass_byName(category);
+                //You could lookup by position, but "name" is more general
+
+                //Intent intent = new Intent(getActivity(), activityClass);
+                //startActivity(intent);
+
+
+            }
+        });
+
+            // Inflate the layout for this fragment
+            return layout;
+
+        }
 
     public void searchItem(String textToSearch){
         for(String item:items){

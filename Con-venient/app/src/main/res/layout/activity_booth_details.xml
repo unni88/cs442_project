@@ -23,14 +23,32 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Booth Name:"
+                android:text="Booth Website:"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_column="0" />
             <TextView
-                android:id="@+id/booth_name"
+                android:id="@+id/booth_detail_web"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="boothname"
+                android:hint="booth website"
+                android:paddingLeft="10dp"
+                android:layout_column="1"
+                android:autoLink="all"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Booth Description:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_column="0" />
+            <TextView
+                android:id="@+id/booth_detail_des"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="booth description"
                 android:paddingLeft="10dp"
                 android:layout_column="1"/>
         </TableRow>

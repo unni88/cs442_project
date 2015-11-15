@@ -92,6 +92,12 @@ public class MainActivity extends AppCompatActivity {
                 showDialog(MainActivity.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
             }
         }
+        if(id == R.id.action_show_calendar_id){
+            final Intent intent = new Intent(this,CalendarMainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
 
         return super.onOptionsItemSelected(item);
     }

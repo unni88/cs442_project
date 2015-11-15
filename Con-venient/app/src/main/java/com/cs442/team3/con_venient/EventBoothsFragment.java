@@ -32,6 +32,8 @@ import java.util.Arrays;
  */
 public class EventBoothsFragment extends Fragment {
 
+    public final static String EXTRA_MESSAGE = "boothname";
+
     String[] items;
 
     ArrayList<String> listItems;
@@ -99,8 +101,9 @@ public class EventBoothsFragment extends Fragment {
                 String chosen = ""+listView.getItemAtPosition(position);
                 Toast.makeText(getActivity(), chosen, Toast.LENGTH_SHORT).show();
 
-                //Intent intent = new Intent(getActivity(), activityClass);
-                //startActivity(intent);
+                Intent intent = new Intent(getActivity(), BoothDetailsActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, chosen);
+                startActivity(intent);
 
 
             }

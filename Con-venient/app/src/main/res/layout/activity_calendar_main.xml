@@ -1,0 +1,24 @@
+
+<LinearLayout   xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="1">
+
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/fragment"
+    android:name="com.cs442.team3.con_venient.CalendarViewFragment"
+    tools:layout="@layout/my_calendar_view" android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:id="@+id/calendar_day_detail_fragment"
+        android:name="com.cs442.team3.con_venient.CalendarDetailedDayFragment"
+        tools:layout="@layout/fragment_day_detailed_calendar" android:layout_width="372dp"
+        android:layout_height="match_parent" />
+
+
+
+
+</LinearLayout>

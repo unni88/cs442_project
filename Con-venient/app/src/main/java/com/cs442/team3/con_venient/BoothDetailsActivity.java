@@ -10,28 +10,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class WebViewActivity extends AppCompatActivity {
+public class BoothDetailsActivity extends AppCompatActivity {
+
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
-    private String weblink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.webpage_viewer);
-        if (this.getIntent().getExtras()!=null){
-            Bundle bundle = this.getIntent().getExtras();
-            weblink = bundle.getString("weblink");
-        }
+        setContentView(R.layout.activity_booth_details);
+        Intent intent = getIntent();
+        String boothname = intent.getStringExtra(EventBoothsFragment.EXTRA_MESSAGE);
+        TextView title = (TextView) findViewById(R.id.booth_detail_title);
+        title.setText(boothname);
 
-        WebView wv = (WebView)findViewById(R.id.webView);
-        wv.getSettings().setJavaScriptEnabled(true);
-        wv.setWebViewClient(new WebViewClient());
-        wv.loadUrl(weblink);
     }
 
     @Override
@@ -60,18 +54,12 @@ public class WebViewActivity extends AppCompatActivity {
                 startActivityForResult(intent, 0);
             } catch (ActivityNotFoundException anfe) {
                 //on catch, show the download dialog
-                showDialog(WebViewActivity.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
+                showDialog(BoothDetailsActivity.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
             }
-        }
-        if(id == R.id.action_show_calendar_id){
-            final Intent intent = new Intent(this,CalendarMainActivity.class);
-            startActivity(intent);
-            finish();
         }
 
         return super.onOptionsItemSelected(item);
     }
-
     //on ActivityResult method
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == 0) {
@@ -113,4 +101,6 @@ public class WebViewActivity extends AppCompatActivity {
         });
         return downloadDialog.show();
     }
+
+
 }

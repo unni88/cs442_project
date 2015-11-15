@@ -5,6 +5,6 @@
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_QRCode" android:title="@string/action_QRCode"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_search" android:title="@string/action_Search"
+    <item android:id="@+id/action_show_calendar_id" android:title="@string/action_show_calendar"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>

@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     public static DataModel data = new DataModel();
-    public final static String EXTRA_MESSAGE = "eventname";
 
     public static String e_name = "";
 
@@ -93,6 +92,12 @@ public class MainActivity extends AppCompatActivity {
                 showDialog(MainActivity.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
             }
         }
+        if(id == R.id.action_show_calendar_id){
+            final Intent intent = new Intent(this,CalendarMainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -171,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(MainActivity.this, MainEventActivity.class);
-                intent.putExtra(EXTRA_MESSAGE, item);
                 startActivity(intent);
             }
         });

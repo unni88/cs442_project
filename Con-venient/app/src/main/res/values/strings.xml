@@ -18,5 +18,6 @@
     <string name="event_map">Event Map</string>
     <string name="frag3">Frag 3</string>
     <string name="frag4">Frag 4</string>
+    <string name="title_activity_booth_details">Booth Info</string>
 
 </resources>

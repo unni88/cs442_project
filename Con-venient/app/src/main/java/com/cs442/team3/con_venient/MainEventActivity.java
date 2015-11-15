@@ -37,7 +37,7 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_event);
         Intent intent = getIntent();
-        String eventname = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        String eventname = MainActivity.e_name;
         drawerLayout = (DrawerLayout)findViewById(R.id.drawerlayout);
         navList = (ListView)findViewById(R.id.navlist);
         ArrayList<String> navArray = new ArrayList<String>();

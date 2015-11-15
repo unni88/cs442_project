@@ -33,9 +33,6 @@
         <activity
             android:name=".BoothDetailsActivity"
             android:label="@string/title_activity_booth_details" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainEventActivity" />
         </activity>
         <activity android:name=".CalendarMainActivity">
 

@@ -36,7 +36,7 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_event);
-        Intent intent = getIntent();
+        //Intent intent = getIntent();
         String eventname = MainActivity.e_name;
         drawerLayout = (DrawerLayout)findViewById(R.id.drawerlayout);
         navList = (ListView)findViewById(R.id.navlist);
@@ -148,6 +148,11 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
                 //on catch, show the download dialog
                 showDialog(MainEventActivity.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
             }
+        }
+        if(id == R.id.action_show_calendar_id){
+            final Intent intent = new Intent(this,CalendarMainActivity.class);
+            startActivity(intent);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

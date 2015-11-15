@@ -57,6 +57,11 @@ public class BoothDetailsActivity extends AppCompatActivity {
                 showDialog(BoothDetailsActivity.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
             }
         }
+        if(id == R.id.action_show_calendar_id){
+            final Intent intent = new Intent(this,CalendarMainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -102,5 +107,9 @@ public class BoothDetailsActivity extends AppCompatActivity {
         return downloadDialog.show();
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 
 }

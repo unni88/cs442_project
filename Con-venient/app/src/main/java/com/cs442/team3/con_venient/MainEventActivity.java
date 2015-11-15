@@ -44,7 +44,7 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
         navArray.add(eventname);
         navArray.add("Booth List");
         navArray.add("Event Map");
-        navArray.add("Fragment 3");
+        navArray.add("Notes");
         navArray.add("Fragment 4");
         navArray.add("Fragment 5");
         navList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -89,6 +89,10 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
                 fragmentTransaction.commit();
                 break;
             case 3:
+                EventNotesFragment noteFragment = new EventNotesFragment();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentholder,noteFragment);
+                fragmentTransaction.commit();
 
                 break;
             case 4:

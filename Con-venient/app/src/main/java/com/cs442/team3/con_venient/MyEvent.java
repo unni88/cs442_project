@@ -11,7 +11,7 @@ public class MyEvent {
     String name = null;
     String location = null;
     String dateTime = null;
-
+    String notes = "";
 
     boolean selected = false;
     ArrayList<Booth> booths = new ArrayList<Booth>();
@@ -24,6 +24,9 @@ public class MyEvent {
         this.dateTime = dateTime;
 
     }
+
+    public String getNotes(){return notes;}
+    public void setNotes(){this.name = notes;}
 
     public String getName(){return name;}
     public void setName(){this.name = name;}

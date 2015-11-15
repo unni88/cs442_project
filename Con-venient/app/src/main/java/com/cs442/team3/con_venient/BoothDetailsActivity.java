@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class BoothDetailsActivity extends AppCompatActivity {
 
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
@@ -26,7 +28,38 @@ public class BoothDetailsActivity extends AppCompatActivity {
         TextView title = (TextView) findViewById(R.id.booth_detail_title);
         title.setText(boothname);
 
+        ArrayList<MyEvent> events = MainActivity.data.getEvents();
+        MyEvent ev = new MyEvent("", false, "", "");
+        String name = MainActivity.e_name;
+
+        for (int i = 0; i < events.size(); i++) {
+            if (name.equals(events.get(i).getName())) {
+
+                ev = events.get(i);
+                //Toast.makeText(this, "Works", Toast.LENGTH_SHORT).show();
+            }
+
+
+        }
+        ArrayList<Booth> bo = ev.getBooths();
+        Booth booth =new Booth("","","","");
+
+        for(int i = 0;i<bo.size();i++){
+            if(boothname.equals(bo.get(i).getName()))
+                booth = bo.get(i);
+        }
+
+        TextView web = (TextView) findViewById(R.id.booth_detail_web);
+        TextView cont = (TextView) findViewById(R.id.booth_detail_cont);
+        TextView desc = (TextView) findViewById(R.id.booth_detail_des);
+
+        web.setText(booth.getWebsite());
+        cont.setText(booth.getContactInfo());
+        desc.setText(booth.getDescriptions());
+
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

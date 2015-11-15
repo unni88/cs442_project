@@ -29,6 +29,7 @@ public class DataModel {
         ArrayList<MyEvent> eventsList = new ArrayList<MyEvent>();
         MyEvent event = new MyEvent("Career Fair", false,"Hermann Hall, 3241 S Federal St, Chicago, IL 60616","Wednesday, October 7, 1-5 pm ");
             event.booths.add(new Booth("Google","www.google.com", "888-656-4323", "google is hiring ...."));
+            event.setNotes("asdasdasdasd");
         eventsList.add(event);
         event = new MyEvent("Fair 1", false,"location1","dateTime1");
         eventsList.add(event);

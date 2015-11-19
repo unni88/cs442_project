@@ -18,6 +18,7 @@ public class DataModel {
 
     ArrayList<MyEvent> events = new ArrayList<MyEvent>();
 
+    int help =0;
 
     public void hardCoded(){
         /*
@@ -36,22 +37,93 @@ public class DataModel {
 
         eventsList.add(event);
         event = new MyEvent("Fair 1", false,"location1","dateTime1");
+        event.booths.add(new Booth("Test1", "www.test1.com", "phone1", "descript 1"));
+        event.booths.add(new Booth("Test2", "www.test2.com", "phone2", "descript 2"));
+        event.booths.add(new Booth("Test3", "www.test3.com", "phone3", "descript 3"));
         eventsList.add(event);
+
         event = new MyEvent("Fair 2", false,"location2","dateTime2");
+        event.booths.add(new Booth("Test1", "www.test1.com", "phone1", "descript 1"));
+        event.booths.add(new Booth("Test2", "www.test2.com", "phone2", "descript 2"));
+        event.booths.add(new Booth("Test3", "www.test3.com", "phone3", "descript 3"));
         eventsList.add(event);
+
         event = new MyEvent("Fair 3", false,"location3","dateTime3");
+        event.booths.add(new Booth("Test1", "www.test1.com", "phone1", "descript 1"));
+        event.booths.add(new Booth("Test2", "www.test2.com", "phone2", "descript 2"));
+        event.booths.add(new Booth("Test3", "www.test3.com", "phone3", "descript 3"));
         eventsList.add(event);
+
         event = new MyEvent("Fair 4", false,"location4","dateTime4");
+        event.booths.add(new Booth("Test1", "www.test1.com", "phone1", "descript 1"));
+        event.booths.add(new Booth("Test2", "www.test2.com", "phone2", "descript 2"));
+        event.booths.add(new Booth("Test3", "www.test3.com", "phone3", "descript 3"));
         eventsList.add(event);
+
         event = new MyEvent("Fair 5", false,"location5","dateTime5");
+        event.booths.add(new Booth("Test1", "www.test1.com", "phone1", "descript 1"));
+        event.booths.add(new Booth("Test2", "www.test2.com", "phone2", "descript 2"));
+        event.booths.add(new Booth("Test3", "www.test3.com", "phone3", "descript 3"));
         eventsList.add(event);
+
         event = new MyEvent("Fair 6", false,"location6","dateTime6");
+        event.booths.add(new Booth("Test1", "www.test1.com", "phone1", "descript 1"));
+        event.booths.add(new Booth("Test2", "www.test2.com", "phone2", "descript 2"));
+        event.booths.add(new Booth("Test3", "www.test3.com", "phone3", "descript 3"));
         eventsList.add(event);
+
         event = new MyEvent("Fair 7", false,"location7","dateTime7");
+        event.booths.add(new Booth("Test1", "www.test1.com", "phone1", "descript 1"));
+        event.booths.add(new Booth("Test2", "www.test2.com", "phone2", "descript 2"));
+        event.booths.add(new Booth("Test3", "www.test3.com", "phone3", "descript 3"));
         eventsList.add(event);
+
         event = new MyEvent("Fair 8", false,"location8","dateTime8");
+        event.booths.add(new Booth("Test1", "www.test1.com", "phone1", "descript 1"));
+        event.booths.add(new Booth("Test2", "www.test2.com", "phone2", "descript 2"));
+        event.booths.add(new Booth("Test3", "www.test3.com", "phone3", "descript 3"));
         eventsList.add(event);
+
         event = new MyEvent("Fair 9", false,"location9","dateTime9");
+        event.booths.add(new Booth("Test1", "www.test1.com", "phone1", "descript 1"));
+        event.booths.add(new Booth("Test2", "www.test2.com", "phone2", "descript 2"));
+        event.booths.add(new Booth("Test3", "www.test3.com", "phone3", "descript 3"));
+        eventsList.add(event);
+
+        event = new MyEvent("Fair 10", false,"location10","dateTime10");
+        event.booths.add(new Booth("Test1", "www.test1.com", "phone1", "descript 1"));
+        event.booths.add(new Booth("Test2", "www.test2.com", "phone2", "descript 2"));
+        event.booths.add(new Booth("Test3", "www.test3.com", "phone3", "descript 3"));
+        eventsList.add(event);
+
+        event = new MyEvent("Fair 11", false,"location11","dateTime11");
+        event.booths.add(new Booth("Test1", "www.test1.com", "phone1", "descript 1"));
+        event.booths.add(new Booth("Test2", "www.test2.com", "phone2", "descript 2"));
+        event.booths.add(new Booth("Test3", "www.test3.com", "phone3", "descript 3"));
+        eventsList.add(event);
+
+        event = new MyEvent("Fair 12", false,"location12","dateTime12");
+        event.booths.add(new Booth("Test1", "www.test1.com", "phone1", "descript 1"));
+        event.booths.add(new Booth("Test2", "www.test2.com", "phone2", "descript 2"));
+        event.booths.add(new Booth("Test3", "www.test3.com", "phone3", "descript 3"));
+        eventsList.add(event);
+
+        event = new MyEvent("Fair 13", false,"location13","dateTime13");
+        event.booths.add(new Booth("Test1", "www.test1.com", "phone1", "descript 1"));
+        event.booths.add(new Booth("Test2", "www.test2.com", "phone2", "descript 2"));
+        event.booths.add(new Booth("Test3", "www.test3.com", "phone3", "descript 3"));
+        eventsList.add(event);
+
+        event = new MyEvent("Fair 14", false,"location14","dateTime14");
+        event.booths.add(new Booth("Test1", "www.test1.com", "phone1", "descript 1"));
+        event.booths.add(new Booth("Test2", "www.test2.com", "phone2", "descript 2"));
+        event.booths.add(new Booth("Test3", "www.test3.com", "phone3", "descript 3"));
+        eventsList.add(event);
+
+        event = new MyEvent("Fair 15", false,"location15","dateTime15");
+        event.booths.add(new Booth("Test1", "www.test1.com", "phone1", "descript 1"));
+        event.booths.add(new Booth("Test2", "www.test2.com", "phone2", "descript 2"));
+        event.booths.add(new Booth("Test3", "www.test3.com", "phone3", "descript 3"));
         eventsList.add(event);
 
         events = eventsList;
@@ -63,6 +135,13 @@ public class DataModel {
         this.hardCoded();
     }
 
+    public int getHelp(){
+        return this.help;
+    }
+    public void setHelp(int help){
+     this.help = help;
+
+    }
     public ArrayList<MyEvent> getEvents(){
         return events;
     }

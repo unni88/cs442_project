@@ -18,8 +18,8 @@ public class XMLParser {
 
     private static final String ns = null;
 
-    public List parse(InputStream in) throws XmlPullParserException, IOException {
-        List<Event> events   =  new ArrayList<Event>();
+    public ArrayList<MyEvent> parse(InputStream in) throws XmlPullParserException, IOException {
+        ArrayList<MyEvent> events   =  new ArrayList<MyEvent>();
         try {
             XmlPullParser parser = Xml.newPullParser();
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
@@ -36,8 +36,8 @@ public class XMLParser {
     }
 
 
-    private List<Event> readFeed(XmlPullParser parser) throws XmlPullParserException, IOException {
-        List<Event> events = new ArrayList();
+    private ArrayList<MyEvent> readFeed(XmlPullParser parser) throws XmlPullParserException, IOException {
+        ArrayList<MyEvent> events = new ArrayList();
         parser.require(XmlPullParser.START_TAG, ns, "events");
         while (parser.next() != XmlPullParser.END_TAG) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
@@ -58,14 +58,14 @@ public class XMLParser {
 
     // Parses the contents of an entry. If it encounters a title, summary, or link tag, hands them off
 // to their respective "read" methods for processing. Otherwise, skips the tag.
-    private Event readEvent(XmlPullParser parser) throws XmlPullParserException, IOException {
+    private MyEvent readEvent(XmlPullParser parser) throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, ns, "event");
         String eventName = "";
         String eventAddress = "";
         String eventDate = ""; //Format is 10-Sep-2015
         String time = ""; //Format is 14:00
         List<Booth> boothList = new ArrayList<Booth>();
-
+        eventName = parser.getAttributeValue(null,"name");
         while (parser.next() != XmlPullParser.END_TAG) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
                 continue;
@@ -73,16 +73,16 @@ public class XMLParser {
             //TODO get the Attribute name from the Event Tag
 
             String name = parser.getName();
-            eventName = parser.getAttributeValue(null,"name");
+
             if (name.equals("address")) {
                 eventAddress = readAddress(parser);
-           //     System.out.println("**************************ADDRESS:"+eventAddress);
+                System.out.println("**************************ADDRESS:"+eventAddress);
             } else if (name.equals("date")) {
                 eventDate = readDate(parser);
-           //     System.out.println("**************************DATE:"+eventDate);
+                System.out.println("**************************DATE:"+eventDate);
             } else if (name.equals("time")) {
                 time = readTime(parser);
-            //    System.out.println("**************************TIME:"+time);
+                System.out.println("**************************TIME:"+time);
             } else if (name.equals("booths")) {
                 boothList = readBooths(parser);
             }
@@ -90,7 +90,14 @@ public class XMLParser {
                //TODO implement SKIP Later... skip(parser);
             }
         }
-        return new Event(eventName,eventAddress,time,eventDate,boothList);
+        System.out.println("************************************EVENT NAME "+eventName);
+        final MyEvent myEventObject = new MyEvent(eventName,false,eventAddress, eventDate+":"+time);
+        if(null != boothList && !boothList.isEmpty()){
+            for(Booth booth :boothList){
+                myEventObject.addBooth(booth);
+            }
+        }
+        return  myEventObject;
     }
 
 

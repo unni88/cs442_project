@@ -99,7 +99,7 @@ public class EventBoothsFragment extends Fragment {
                                     int position, long arg3) {
                 // TODO Auto-generated method stub
                 String chosen = ""+listView.getItemAtPosition(position);
-                Toast.makeText(getActivity(), chosen, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), chosen, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getActivity(), BoothDetailsActivity.class);
                 intent.putExtra(EXTRA_MESSAGE, chosen);

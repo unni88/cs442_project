@@ -110,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
                 String contents = intent.getStringExtra("SCAN_RESULT");
                 String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
 
-                Toast toast = Toast.makeText(this, "Content:" + contents, Toast.LENGTH_SHORT);
-                toast.show();
+                //Toast toast = Toast.makeText(this, "Content:" + contents, Toast.LENGTH_SHORT);
+                //toast.show();
 
                 Intent webviewActivity = new Intent(getBaseContext(), WebViewActivity.class);
                 Bundle bundle = new Bundle();
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String item = ((TextView) view).getText().toString();
                 e_name = item;
-                Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(MainActivity.this, MainEventActivity.class);
                 startActivity(intent);

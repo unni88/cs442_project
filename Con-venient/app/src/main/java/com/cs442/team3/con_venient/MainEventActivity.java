@@ -166,8 +166,8 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
                 String contents = intent.getStringExtra("SCAN_RESULT");
                 String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
 
-                Toast toast = Toast.makeText(this, "Content:" + contents, Toast.LENGTH_SHORT);
-                toast.show();
+                //Toast toast = Toast.makeText(this, "Content:" + contents, Toast.LENGTH_SHORT);
+                //toast.show();
 
                 Intent webviewActivity = new Intent(getBaseContext(), WebViewActivity.class);
                 Bundle bundle = new Bundle();

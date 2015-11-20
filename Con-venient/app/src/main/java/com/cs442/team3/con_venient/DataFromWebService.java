@@ -7,6 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Unni on 11/15/15.
@@ -17,9 +19,10 @@ public class DataFromWebService {
 
     public static String TAG = "WebServiceClass";
 
-    public void getDataFromWebService(){
+    public ArrayList<MyEvent> getDataFromWebService(){
         // Get the XML
         URL url;
+        ArrayList<MyEvent> events = new ArrayList<MyEvent>();
         try {
             url = new URL(hostedURL);
             URLConnection connection;
@@ -41,7 +44,7 @@ public class DataFromWebService {
                 }*/
                 try {
                     XMLParser xmlParser = new XMLParser();
-                    xmlParser.parse(httpConnection.getInputStream());
+                    events = xmlParser.parse(httpConnection.getInputStream());
                 }catch(final Exception e){
                     e.printStackTrace();
                 }
@@ -112,7 +115,7 @@ public class DataFromWebService {
         }*/
         finally {
         }
-
+        return events;
     }
 
 }

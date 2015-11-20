@@ -2,6 +2,7 @@ package com.cs442.team3.con_venient;
 
 import android.content.Context;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -12,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class DataModel {
@@ -27,6 +29,20 @@ public class DataModel {
         this.contactInfo = contactInfo;
         this.descriptions = descriptions;*/
 
+
+
+
+        final DataFromWebService dataFromWebService = new DataFromWebService();
+        ArrayList<MyEvent> eventsList = new ArrayList<MyEvent>();
+
+        int SDK_INT = android.os.Build.VERSION.SDK_INT;
+        if (SDK_INT > 8) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            eventsList = dataFromWebService.getDataFromWebService();
+        }
+     /*
         ArrayList<MyEvent> eventsList = new ArrayList<MyEvent>();
         MyEvent event = new MyEvent("Career Fair", false,"Hermann Hall, 3241 S Federal St, Chicago, IL 60616","Wednesday, October 7, 1-5 pm ");
             event.booths.add(new Booth("Google","www.google.com", "888-656-4323", "google is hiring ...."));
@@ -125,8 +141,14 @@ public class DataModel {
         event.booths.add(new Booth("Test2", "www.test2.com", "phone2", "descript 2"));
         event.booths.add(new Booth("Test3", "www.test3.com", "phone3", "descript 3"));
         eventsList.add(event);
-
+*/
         events = eventsList;
+
+        if(null != events ){
+            for(MyEvent event : events){
+                System.out.println("############################"+event.getLocation());
+            }
+        }
 
     }
 

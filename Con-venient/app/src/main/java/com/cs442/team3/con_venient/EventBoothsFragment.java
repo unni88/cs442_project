@@ -34,7 +34,7 @@ public class EventBoothsFragment extends Fragment {
 
     public final static String EXTRA_MESSAGE = "boothname";
 
-    String[] items;
+    ArrayList<String> items=new ArrayList<String>();
 
     ArrayList<String> listItems;
 
@@ -115,6 +115,12 @@ public class EventBoothsFragment extends Fragment {
         }
 
     public void searchItem(String textToSearch){
+
+        String[] items = new String[listItems.size()];
+
+        for(int i =0;i<listItems.size();i++)
+            items[i]=listItems.get(i);
+
         for(String item:items){
             if(!item.contains(textToSearch)){
                 listItems.remove(item);
@@ -132,7 +138,6 @@ public class EventBoothsFragment extends Fragment {
             if(name.equals(events.get(i).getName())){
 
                 ev = events.get(i);
-                Toast.makeText(getActivity(), "Works", Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -144,9 +149,8 @@ public class EventBoothsFragment extends Fragment {
 
         }
 
-        items=new String[]{"ACCO Brands", "Aerotek","BMW Tech Corp","CDK Global","CCC Info Services"};
-
         listItems=str;
+        items = str;
         adapter = new ArrayAdapter<String>(getActivity(),
                 R.layout.booth_list_item, R.id.txtitem, str);
         listView.setAdapter(adapter);

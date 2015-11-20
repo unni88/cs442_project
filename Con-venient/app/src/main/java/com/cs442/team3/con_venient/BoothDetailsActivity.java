@@ -42,10 +42,10 @@ public class BoothDetailsActivity extends AppCompatActivity {
 
         }
         ArrayList<Booth> bo = ev.getBooths();
-        Booth booth =new Booth("","","","");
+        Booth booth =new Booth("",0,"","","");
 
         for(int i = 0;i<bo.size();i++){
-            if(boothname.equals(bo.get(i).getName()))
+            if(boothname.equals(bo.get(i).getBoothName()))
                 booth = bo.get(i);
         }
 
@@ -54,8 +54,8 @@ public class BoothDetailsActivity extends AppCompatActivity {
         TextView desc = (TextView) findViewById(R.id.booth_detail_des);
 
         web.setText(booth.getWebsite());
-        cont.setText(booth.getContactInfo());
-        desc.setText(booth.getDescriptions());
+        cont.setText(booth.getPhone());
+        desc.setText(booth.getDescription());
 
 
     }

@@ -3,6 +3,7 @@ package com.cs442.team3.con_venient;
 /**
  * Created by wmei on 10/31/15.
  */
+import android.app.usage.UsageEvents;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,9 @@ import java.util.ArrayList;
 public class EventPrefs extends AppCompatActivity {
 
     DataModel data = MainActivity.data;
+
+    DataModel data1 = new DataModel();
+
 
     MyAdapter dataAdapter = null;
 
@@ -86,13 +90,14 @@ public class EventPrefs extends AppCompatActivity {
 
         finish();
     }
-    /*
-    public void onCancel(View view){
 
+    public void onCancel(View view){
+        DataModel data2 = data1;
+        ArrayList<MyEvent> ev = data2.getEvents();
         MainActivity.data.setEvents(ev);
         finish();
     }
-    */
+
 
     public class MyAdapter extends ArrayAdapter<MyEvent> {
 

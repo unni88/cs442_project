@@ -140,7 +140,7 @@ public class EventBoothsFragment extends Fragment {
         ArrayList<String> str = new ArrayList<String>();
 
         for (int i =0;i<bo.size();i++){
-            str.add(bo.get(i).getName());
+            str.add(bo.get(i).getBoothName());
 
         }
 

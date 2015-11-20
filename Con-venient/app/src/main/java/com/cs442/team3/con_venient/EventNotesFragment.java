@@ -122,5 +122,6 @@ public class EventNotesFragment extends Fragment {
             ev.setNotes(edit.getText().toString());
             events.set(index, ev);
             MainActivity.data.setEvents(events);
+
     }
 }

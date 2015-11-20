@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,15 +44,22 @@ public class EventMapFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_event_map, container, false);
+        View view = inflater.inflate(R.layout.webpage_viewer, container, false);
 
-        ImageView imagev = (ImageView)view.findViewById(R.id.map_image);
+        String weblink = "http://cmc.iit.edu:1122/hermann_hall.jpg";
+
+        WebView wv = (WebView)view.findViewById(R.id.webView);
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.setWebViewClient(new WebViewClient());
+        wv.loadUrl(weblink);
+
+        //Leaving this here for Wei
         String en = MainActivity.e_name;
         ArrayList<MyEvent> events = MainActivity.data.getEvents();
         for (int i = 0; i < events.size(); i++){
             if (en.equals(events.get(i).getName())) {
                 // Toast.makeText(getActivity(),"works",Toast.LENGTH_LONG).show();
-                imagev.setImageResource(R.drawable.hermann_hall_map);
+                //imagev.setImageResource(R.drawable.hermann_hall_map);
             }
         }
         // Inflate the layout for this fragment

@@ -40,7 +40,7 @@ public class EventBoothsFragment extends Fragment {
 
     ArrayAdapter<String> adapter;
 
-    ListView listView, mlist;
+    ListView listView;
 
     EditText editText;
 

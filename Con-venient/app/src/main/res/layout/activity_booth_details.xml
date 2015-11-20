@@ -23,14 +23,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
                 android:text="Booth Website:"
                 android:layout_column="0"
                 android:textSize="20sp"/>
-=======
-                android:text="Website:"
-                android:layout_column="0" />
->>>>>>> 46b0f6df741531eaa5f345a8280dfd7e65f6c120
+
             <TextView
                 android:id="@+id/booth_detail_web"
                 android:layout_width="wrap_content"
@@ -48,20 +44,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
                 android:text="Booth Description:"
                 android:layout_column="0"
                 android:textSize="20sp"/>
-=======
-                android:text="Contact:"
-                android:layout_column="0" />
+
             <TextView
                 android:id="@+id/booth_detail_cont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="booth description"
                 android:paddingLeft="10dp"
-                android:layout_column="1"/>
+                android:layout_column="1"
+                android:textSize="20sp"
+                />
         </TableRow>
 
         <TableRow
@@ -71,8 +66,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Descrip.:"
-                android:layout_column="0" />
->>>>>>> 46b0f6df741531eaa5f345a8280dfd7e65f6c120
+                android:layout_column="0"
+                android:textSize="20sp"/>
+
             <TextView
                 android:id="@+id/booth_detail_des"
                 android:layout_width="wrap_content"

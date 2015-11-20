@@ -22,4 +22,44 @@ public class Booth {
         this.phone = phone;
         this.description = description;
     }
+
+    public String getBoothName() {
+        return boothName;
+    }
+
+    public void setBoothName(String boothName) {
+        this.boothName = boothName;
+    }
+
+    public int getBoothid() {
+        return boothid;
+    }
+
+    public void setBoothid(int boothid) {
+        this.boothid = boothid;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

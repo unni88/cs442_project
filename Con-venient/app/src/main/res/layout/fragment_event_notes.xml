@@ -6,7 +6,9 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id = "@+id/notes"
+        android:id = "@+id/notes_save"
+        android:text= "Save Notes"
+        android:onClick="saveNotes"
         />
 
     <EditText

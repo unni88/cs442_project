@@ -1,5 +1,6 @@
 package com.cs442.team3.con_venient;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -15,6 +16,7 @@ public class MyEvent {
 
     boolean selected = false;
     ArrayList<Booth> booths = new ArrayList<Booth>();
+    String map =" ";
 
     public MyEvent(String name, boolean selected, String location, String dateTime){
         super();
@@ -25,11 +27,14 @@ public class MyEvent {
 
     }
 
+    public String getMap(){return map;}
+    public void setMap(String map){this.map = map;}
+
     public String getNotes(){return notes;}
-    public void setNotes(){this.name = notes;}
+    public void setNotes(String note){this.notes = note;}
 
     public String getName(){return name;}
-    public void setName(){this.name = name;}
+    public void setName(String name){this.name = name;}
 
     public boolean isSelected(){return selected;}
     public void setSelected(boolean selected){this.selected = selected;}

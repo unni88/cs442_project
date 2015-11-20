@@ -124,13 +124,31 @@ public class EventBoothsFragment extends Fragment {
     }
 
     public void initList(){
-        ArrayList<MyEvent> ev = new ArrayList<MyEvent>();
+        ArrayList<MyEvent> events = MainActivity.data.getEvents();
+        MyEvent ev = new MyEvent("",false,"","");
+        String name = MainActivity.e_name;
+        for(int i=0;i< events.size();i++)
+        {
+            if(name.equals(events.get(i).getName())){
+
+                ev = events.get(i);
+                Toast.makeText(getActivity(), "Works", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        ArrayList<Booth> bo = ev.getBooths();
+        ArrayList<String> str = new ArrayList<String>();
+
+        for (int i =0;i<bo.size();i++){
+            str.add(bo.get(i).getName());
+
+        }
 
         items=new String[]{"ACCO Brands", "Aerotek","BMW Tech Corp","CDK Global","CCC Info Services"};
 
-        listItems=new ArrayList<>(Arrays.asList(items));
+        listItems=str;
         adapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.booth_list_item, R.id.txtitem, listItems);
+                R.layout.booth_list_item, R.id.txtitem, str);
         listView.setAdapter(adapter);
     }
 

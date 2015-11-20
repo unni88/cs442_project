@@ -36,7 +36,7 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_event);
-        Intent intent = getIntent();
+        //Intent intent = getIntent();
         String eventname = MainActivity.e_name;
         drawerLayout = (DrawerLayout)findViewById(R.id.drawerlayout);
         navList = (ListView)findViewById(R.id.navlist);
@@ -44,7 +44,7 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
         navArray.add(eventname);
         navArray.add("Booth List");
         navArray.add("Event Map");
-        navArray.add("Fragment 3");
+        navArray.add("Notes");
         navArray.add("Fragment 4");
         navArray.add("Fragment 5");
         navList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -89,6 +89,10 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
                 fragmentTransaction.commit();
                 break;
             case 3:
+                EventNotesFragment noteFragment = new EventNotesFragment();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentholder,noteFragment);
+                fragmentTransaction.commit();
 
                 break;
             case 4:
@@ -144,6 +148,11 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
                 //on catch, show the download dialog
                 showDialog(MainEventActivity.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
             }
+        }
+        if(id == R.id.action_show_calendar_id){
+            final Intent intent = new Intent(this,CalendarMainActivity.class);
+            startActivity(intent);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

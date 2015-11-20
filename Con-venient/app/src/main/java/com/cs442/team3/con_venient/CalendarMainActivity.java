@@ -42,4 +42,8 @@ public class CalendarMainActivity extends FragmentActivity implements CalendarVi
     public void onFragmentInteractionForDetailedDay(Uri uri){
 
     }
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }

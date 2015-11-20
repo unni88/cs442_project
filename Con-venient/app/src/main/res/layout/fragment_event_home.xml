@@ -1,11 +1,55 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="com.dev.cts.myfragmentexample.MyFragment1">
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <!--TODO: Update blank fragment layout-->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:gravity="left"
-        android:id="@+id/event_home"
-        android:text="@string/homefrag" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Event Title"
+        android:textSize="35sp"
+        android:id="@+id/event_info_title"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"/>
 
-</FrameLayout>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:shrinkColumns="1">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Event Location:"
+                android:layout_column="0" />
+            <TextView
+                android:id="@+id/event_info_loc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="event location"
+                android:paddingLeft="10dp"
+                android:layout_column="1"
+                android:autoLink="all"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Event Date and Time:"
+                android:layout_column="0" />
+            <TextView
+                android:id="@+id/event_info_dateTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="event date and time"
+                android:paddingLeft="10dp"
+                android:layout_column="1"/>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

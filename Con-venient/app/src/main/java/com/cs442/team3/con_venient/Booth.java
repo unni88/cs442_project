@@ -1,42 +1,25 @@
 package com.cs442.team3.con_venient;
 
 /**
- * Created by wmei on 10/31/15.
+ * Created by Unni on 11/19/15.
  */
 public class Booth {
+    private String boothName;
 
-    int id = 0;
-    String name = null;
-    String website = null;
-    String contactInfo = null;
-    String descriptions = null;
+    private int boothid;
 
-    public Booth( String name, String website, String contactInfo, String descriptions){
-        super();
-        //this.id = id;
-        this.name = name;
+    private String website;
+
+    private String phone;
+
+    private String description;
+
+
+    public Booth(String boothName, int boothid, String website, String phone, String description) {
+        this.boothName = boothName;
+        this.boothid = boothid;
         this.website = website;
-        this.contactInfo = contactInfo;
-        this.descriptions = descriptions;
-
+        this.phone = phone;
+        this.description = description;
     }
-
-    public String getName(){return name;}
-    public void setName(String name){this.name = name;}
-
-    public String getWebsite(){return website;}
-    public void setWebsite(String website){this.website = website;}
-
-    public String getContactInfo(){return contactInfo;}
-    public void setContactInfo(String contactInfo){this.contactInfo=contactInfo;}
-
-    public String getDescriptions(){return descriptions;}
-    public void setDescriptions(String descriptions){this.descriptions = descriptions;}
-
-    public int getId(){return id;}
-    public void setId(int id){this.id = id;}
-
-
-
-
 }

@@ -54,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:hint="phone"
                 android:paddingLeft="10dp"
+                android:autoLink="all"
                 android:layout_column="1"
                 android:textSize="20sp"
                 />

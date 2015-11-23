@@ -46,22 +46,26 @@ public class EventMapFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.webpage_viewer, container, false);
 
-        String weblink = "http://cmc.iit.edu:1122/hermann_hall.jpg";
+        String weblink = " ";
 
-        WebView wv = (WebView)view.findViewById(R.id.webView);
-        wv.getSettings().setJavaScriptEnabled(true);
-        wv.setWebViewClient(new WebViewClient());
-        wv.loadUrl(weblink);
-
-        //Leaving this here for Wei
         String en = MainActivity.e_name;
         ArrayList<MyEvent> events = MainActivity.data.getEvents();
         for (int i = 0; i < events.size(); i++){
             if (en.equals(events.get(i).getName())) {
                 // Toast.makeText(getActivity(),"works",Toast.LENGTH_LONG).show();
                 //imagev.setImageResource(R.drawable.hermann_hall_map);
+                weblink =events.get(i).getMap();
             }
         }
+
+
+
+        WebView wv = (WebView)view.findViewById(R.id.webView);
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.setWebViewClient(new WebViewClient());
+        wv.loadUrl(weblink);
+
+
         // Inflate the layout for this fragment
         return view;
     }

@@ -164,10 +164,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         TextView info_text = (TextView) findViewById(R.id.infoText);
-        if (!events.isEmpty()){
-            info_text.setVisibility(View.GONE);
+        if (events.isEmpty()){
+            info_text.setVisibility(View.VISIBLE);
             //info_text.setText("Please click Add Event to add a new event to your list.");
-        }
+        }else info_text.setVisibility(View.GONE);
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, events);
         ListView listview=(ListView) findViewById(R.id.eventList);

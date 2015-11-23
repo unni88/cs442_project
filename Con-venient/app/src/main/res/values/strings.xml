@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Con-venient</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">You have no saved events in your list. \n \n Please click the "Add/Remove Events" button to add a new event from the database to your list.</string>
     <string name="action_settings">Refresh</string>
     <string name="action_QRCode">QR Code</string>
     <string name="action_Search">Search</string>

@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="Please click Add Event to add a new event to your list."
+        android:text="@string/hello_world"
         android:padding="10dp"
         android:textAlignment="center"
         android:id="@+id/infoText"

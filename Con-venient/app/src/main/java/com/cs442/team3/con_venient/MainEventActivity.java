@@ -200,6 +200,9 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
     @Override
     public void onBackPressed() {
         finish();
+
+        //FragmentManager fm = this.getSupportFragmentManager();
+        //fm.popBackStack();
         /*navList.setItemChecked(0,true);
         EventHomeFragment eventHomeFragment = new EventHomeFragment();
         fragmentTransaction = fragmentManager.beginTransaction();

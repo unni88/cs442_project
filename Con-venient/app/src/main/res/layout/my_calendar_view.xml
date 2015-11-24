@@ -53,7 +53,8 @@
             android:id="@+id/addEvent"
             android:layout_width="54sp"
             android:layout_height="60sp"
-            android:background="@drawable/plus" />
+            android:background="@drawable/plus"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <Button

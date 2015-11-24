@@ -110,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
                 String contents = intent.getStringExtra("SCAN_RESULT");
                 String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
 
-                Toast toast = Toast.makeText(this, "Content:" + contents, Toast.LENGTH_SHORT);
-                toast.show();
+                //Toast toast = Toast.makeText(this, "Content:" + contents, Toast.LENGTH_SHORT);
+                //toast.show();
 
                 Intent webviewActivity = new Intent(getBaseContext(), WebViewActivity.class);
                 Bundle bundle = new Bundle();
@@ -162,6 +162,13 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+
+        TextView info_text = (TextView) findViewById(R.id.infoText);
+        if (events.isEmpty()){
+            info_text.setVisibility(View.VISIBLE);
+            //info_text.setText("Please click Add Event to add a new event to your list.");
+        }else info_text.setVisibility(View.GONE);
+
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, events);
         ListView listview=(ListView) findViewById(R.id.eventList);
         listview.setAdapter(adapter);
@@ -173,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String item = ((TextView) view).getText().toString();
                 e_name = item;
-                Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(MainActivity.this, MainEventActivity.class);
                 startActivity(intent);

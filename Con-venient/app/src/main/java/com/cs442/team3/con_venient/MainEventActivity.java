@@ -45,8 +45,6 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
         navArray.add("Booth List");
         navArray.add("Event Map");
         navArray.add("Notes");
-        navArray.add("Fragment 4");
-        navArray.add("Fragment 5");
         navList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_activated_1,navArray);
         navList.setAdapter(adapter);
@@ -95,14 +93,6 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
                 fragmentTransaction.commit();
 
                 break;
-            case 4:
-
-                break;
-
-            case 5:
-
-                break;
-
         }
 
     }
@@ -166,8 +156,8 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
                 String contents = intent.getStringExtra("SCAN_RESULT");
                 String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
 
-                Toast toast = Toast.makeText(this, "Content:" + contents, Toast.LENGTH_SHORT);
-                toast.show();
+                //Toast toast = Toast.makeText(this, "Content:" + contents, Toast.LENGTH_SHORT);
+                //toast.show();
 
                 Intent webviewActivity = new Intent(getBaseContext(), WebViewActivity.class);
                 Bundle bundle = new Bundle();
@@ -210,6 +200,9 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
     @Override
     public void onBackPressed() {
         finish();
+
+        //FragmentManager fm = this.getSupportFragmentManager();
+        //fm.popBackStack();
         /*navList.setItemChecked(0,true);
         EventHomeFragment eventHomeFragment = new EventHomeFragment();
         fragmentTransaction = fragmentManager.beginTransaction();

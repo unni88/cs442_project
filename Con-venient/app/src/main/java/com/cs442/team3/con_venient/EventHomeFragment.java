@@ -33,7 +33,7 @@ public class EventHomeFragment extends Fragment {
         TextView eventdateTime = (TextView)view.findViewById(R.id.event_info_dateTime);
 
         String en = MainActivity.e_name;
-        Toast.makeText(getActivity(),MainActivity.e_name,Toast.LENGTH_LONG).show();
+       // Toast.makeText(getActivity(),MainActivity.e_name,Toast.LENGTH_LONG).show();
         //eventHomeDetails(en);
         ArrayList<MyEvent> events = MainActivity.data.getEvents();
         MyEvent ev = new MyEvent("", false, "", "");

@@ -66,8 +66,8 @@ public class CalendarDetailedDayFragment extends Fragment {
         endCal.set(Calendar.YEAR,Integer.parseInt(yearStr));
         endCal.set(Calendar.HOUR_OF_DAY,23);
         endCal.set(Calendar.MINUTE,59);
-        endCal.set(Calendar.SECOND, 59);
-        dayEvents.clear();*/
+        endCal.set(Calendar.SECOND, 59);*/
+        dayEvents.clear();
         dayEvents.addAll(getDayDetails(dayStr,monthStr,yearStr));
         dayEventsArrayAdapter.notifyDataSetChanged();
 

@@ -541,26 +541,31 @@ public class CalendarViewFragment extends Fragment implements View.OnClickListen
         Format df = DateFormat.getDateFormat(getActivity().getApplicationContext());
         Format tf = DateFormat.getTimeFormat(getActivity().getApplicationContext());
         String selection = "(( " + CalendarContract.Events.DTSTART + " >= " + startTime + " ) AND ( " + CalendarContract.Events.DTSTART + " <= " + endTime + " ))";
-        mCursor  = this.getActivity().getContentResolver().query(CalendarContract.Events.CONTENT_URI, COLS, selection, null, null);
-        mCursor.moveToFirst();
-        while(!mCursor.isLast()){
-            final int calendarId = mCursor.getInt(0);
-            final String eventTitle  = mCursor.getString(1);
-            final String eventDescription = mCursor.getString(2);
-            final Long dtstart  =  mCursor.getLong(3);
-            final String dateTimeInFormat = getDayAndMonth(dtstart);
-            allEvents.put(dateTimeInFormat.split("_")[0], dateTimeInFormat.split("_")[0]);
-            final Long dtEnd  =  mCursor.getLong(4);  //ALL DAY COMES IN BETWEEN
-            final String eventLocation = mCursor.getString(6);
+        try {
+
+            mCursor = this.getActivity().getContentResolver().query(CalendarContract.Events.CONTENT_URI, COLS, selection, null, null);
+            mCursor.moveToFirst();
+            while (!mCursor.isLast()) {
+                final int calendarId = mCursor.getInt(0);
+                final String eventTitle = mCursor.getString(1);
+                final String eventDescription = mCursor.getString(2);
+                final Long dtstart = mCursor.getLong(3);
+                final String dateTimeInFormat = getDayAndMonth(dtstart);
+                allEvents.put(dateTimeInFormat.split("_")[0], dateTimeInFormat.split("_")[0]);
+                final Long dtEnd = mCursor.getLong(4);  //ALL DAY COMES IN BETWEEN
+                final String eventLocation = mCursor.getString(6);
 	/*		System.out.println("************************************");
 			System.out.println(eventTitle + ":"+eventDescription+":"+eventLocation+":ends at:"+dtEnd);*/
-            mCursor.moveToNext();
+                mCursor.moveToNext();
+            }
+            final String eventTitle = mCursor.getString(1);
+            final String eventDescription = mCursor.getString(2);
+            final Long dtstart = mCursor.getLong(3);
+            final String dateTimeInFormat = getDayAndMonth(dtstart);
+            allEvents.put(dateTimeInFormat.split("_")[0], dateTimeInFormat.split("_")[0]);
+        }catch(final Exception e){
+            e.printStackTrace();
         }
-        final String eventTitle  = mCursor.getString(1);
-        final String eventDescription = mCursor.getString(2);
-        final Long dtstart  =  mCursor.getLong(3);
-        final String dateTimeInFormat = getDayAndMonth(dtstart);
-        allEvents.put(dateTimeInFormat.split("_")[0], dateTimeInFormat.split("_")[0]);
         return allEvents;
     }
 

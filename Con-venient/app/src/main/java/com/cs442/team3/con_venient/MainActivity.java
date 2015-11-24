@@ -94,8 +94,8 @@ public class MainActivity extends AppCompatActivity {
         }
         if(id == R.id.action_show_calendar_id){
             final Intent intent = new Intent(this,CalendarMainActivity.class);
-            startActivity(intent);
-            finish();
+            startActivityForResult(intent,0);
+
         }
 
 

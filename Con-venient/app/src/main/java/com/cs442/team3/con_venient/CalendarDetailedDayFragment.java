@@ -171,7 +171,7 @@ public class CalendarDetailedDayFragment extends Fragment {
                     final String time  = dateTime.split(" ")[1];
 
 
-                    if(null != dateTime && !dateTime.isEmpty() && date.equalsIgnoreCase(dayMonthYearRequestQuery)){
+                    if(null != dateTime && !dateTime.isEmpty() && checkIfDateisSame(date,dayMonthYearRequestQuery)){
                        String responseString = "Event :"+myEvent.getName()+" on "+date+" "+time;
                         if(null != myEvent.getLocation()){
                             responseString = responseString + " at "+myEvent.getLocation();
@@ -194,6 +194,21 @@ public class CalendarDetailedDayFragment extends Fragment {
         return responseList;
     }
 
+
+
+    private boolean checkIfDateisSame(final String date1,final String date2){
+        boolean dateSame = true;
+        if(  Integer.parseInt(date1.split("/")[0]) != Integer.parseInt(date2.split("/")[0]) ){
+            dateSame = false;
+        }
+        if(  Integer.parseInt(date1.split("/")[1]) != Integer.parseInt(date2.split("/")[1]) ){
+            dateSame = false;
+        }
+        if(  Integer.parseInt(date1.split("/")[2]) != Integer.parseInt(date2.split("/")[2]) ){
+            dateSame = false;
+        }
+        return dateSame;
+    }
 
 
     private String getDayAndMonth(Long timeInMillis){

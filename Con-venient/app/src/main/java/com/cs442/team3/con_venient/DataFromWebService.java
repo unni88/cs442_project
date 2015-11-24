@@ -19,6 +19,8 @@ public class DataFromWebService {
 
     public static String TAG = "WebServiceClass";
 
+    public static boolean isHosted = false;
+
     public ArrayList<MyEvent> getDataFromWebService(){
         // Get the XML
         URL url;

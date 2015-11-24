@@ -333,12 +333,8 @@ public class CalendarViewFragment extends Fragment implements View.OnClickListen
             Format df = DateFormat.getDateFormat(rootView.getContext());
             Format tf = DateFormat.getTimeFormat(rootView.getContext());
 
-            System.out.println("******************************************");
-            System.out.println("START DATE:"+  df.format(cal.getTimeInMillis()));
-            System.out.println("END DATE:"+  df.format(lastDayCal.getTimeInMillis()));
-            System.out.println("******************************************");
 
-            final Map<String,String> daysWithEventsMap  = getCalendarSyncItems(cal.getTimeInMillis(), lastDayCal.getTimeInMillis());
+            final Map<String,String> daysWithEventsMap  = getDaysWhenEventsArePresent((currentMonth+1));//getCalendarSyncItems(cal.getTimeInMillis(), lastDayCal.getTimeInMillis());
 
             //	Log.d(tag, "Gregorian Calendar:= " + cal.getTime().toString());
 
@@ -417,8 +413,8 @@ public class CalendarViewFragment extends Fragment implements View.OnClickListen
                     list.add(String.valueOf(i) + "-BLUE" + "-"
                             + getMonthAsString(currentMonth) + "-" + yy);
                 }else if (i == getCurrentDayOfMonth()) {
-                    list.add(String.valueOf(i) + "-BLUE" + "-"
-                            + getMonthAsString(currentMonth) + "-" + yy);
+              /*No Need to Highlight current Day     list.add(String.valueOf(i) + "-BLUE" + "-"
+                            + getMonthAsString(currentMonth) + "-" + yy);  */
                 } else {
                     list.add(String.valueOf(i) + "-WHITE" + "-"
                             + getMonthAsString(currentMonth) + "-" + yy);
@@ -507,15 +503,13 @@ public class CalendarViewFragment extends Fragment implements View.OnClickListen
         @Override
         public void onClick(View view) {
             String date_month_year = (String) view.getTag();
-            selectedDayMonthYearButton.setText("Selected: " + date_month_year);
-            onDaySelected(date_month_year);
-            try {
-                Date parsedDate = dateFormatter.parse(date_month_year);
-                ///		Log.d(tag, "Parsed Date: " + parsedDate.toString());
+            final int day  = (Integer.parseInt(date_month_year.split("-")[0]));
+            final int month  = (Integer.parseInt(date_month_year.split("-")[1]));
+            final int year = Integer.parseInt(date_month_year.split("-")[2]);
+            final String textToSend  = day+"-"+month+"-"+year;
+            selectedDayMonthYearButton.setText((month+1)+"/"+day+"/"+year);
+            onDaySelected(textToSend);
 
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
         }
 
         public int getCurrentDayOfMonth() {
@@ -537,7 +531,7 @@ public class CalendarViewFragment extends Fragment implements View.OnClickListen
 
 
     public Map<String,String> getCalendarSyncItems(final Long startTime,final Long endTime){
-        final Map<String,String> allEvents = new HashMap<String,String>();
+        Map<String,String> allEvents = new HashMap<String,String>();  //It Just has the Day as Integer in Map key & value..
         Format df = DateFormat.getDateFormat(getActivity().getApplicationContext());
         Format tf = DateFormat.getTimeFormat(getActivity().getApplicationContext());
         String selection = "(( " + CalendarContract.Events.DTSTART + " >= " + startTime + " ) AND ( " + CalendarContract.Events.DTSTART + " <= " + endTime + " ))";
@@ -554,8 +548,6 @@ public class CalendarViewFragment extends Fragment implements View.OnClickListen
                 allEvents.put(dateTimeInFormat.split("_")[0], dateTimeInFormat.split("_")[0]);
                 final Long dtEnd = mCursor.getLong(4);  //ALL DAY COMES IN BETWEEN
                 final String eventLocation = mCursor.getString(6);
-	/*		System.out.println("************************************");
-			System.out.println(eventTitle + ":"+eventDescription+":"+eventLocation+":ends at:"+dtEnd);*/
                 mCursor.moveToNext();
             }
             final String eventTitle = mCursor.getString(1);
@@ -566,8 +558,72 @@ public class CalendarViewFragment extends Fragment implements View.OnClickListen
         }catch(final Exception e){
             e.printStackTrace();
         }
-        return allEvents;
+        return  allEvents;
     }
+
+
+
+    public Map<String,String> getDaysWhenEventsArePresent(final int monthParam) {
+        final Map<String,String> daysinMonth = new HashMap<String,String>();
+        if(!DataFromWebService.isHosted){
+            final ArrayList<MyEvent> myEvents= MainActivity.data.getEvents();
+            if(null != myEvents && !myEvents.isEmpty()){
+                for(MyEvent myEvent : myEvents){
+                    try {
+                        String date = getDayTimeElement(myEvent.getDateTime(), 2);
+                        if (null != date) {
+                            final int month = Integer.parseInt(date.split("/")[0]);
+                            final int day = Integer.parseInt(date.split("/")[1]);
+                            if (month == monthParam) {
+                                daysinMonth.put(day + "", day + "");
+                            }
+                        }
+                    }catch (final Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }else{
+            //TODO write logic for getting data from Web Service
+        }
+        return daysinMonth;
+    }
+
+
+
+    private String getDayTimeElement(final String dateTimeString,final int type){
+        String returnString  = null;
+        final String date = dateTimeString.split(" ")[0];
+        final String time  = dateTimeString.split(" ")[1];
+
+
+        switch(type){
+            case 1:                         //corresponds to just the Day in the Month
+                returnString = date.split("/")[1];
+            case 2 :
+                returnString = date;
+            default:
+                break;
+        }
+
+
+        return returnString;
+    }
+
+
+
+/*
+        System.out.println("########################DISPLAYING RESULTS #################");
+
+        if( (null != allEvents) && (!allEvents.isEmpty())  ){
+            for(Map.Entry<String,String>allEvent:allEvents.entrySet()){
+                System.out.println(allEvent.getKey() + ":" + allEvent.getValue());
+            }
+        }
+
+
+        System.out.println("######################################");  */
+
 
 
     private String getDayAndMonth(Long timeInMillis){

@@ -48,11 +48,10 @@ public class CalendarDetailedDayFragment extends Fragment {
 
         dayDetailedRequest = dayMonthRequest;
 
-        System.out.println("**************"+dayMonthRequest+"*****************");
         final String dayStr = dayMonthRequest.split("-")[0];
         final String monthStr = dayMonthRequest.split("-")[1];
         final String yearStr = dayMonthRequest.split("-")[2];
-
+/*
         final Calendar startCal = Calendar.getInstance();
         startCal.set(Calendar.DAY_OF_MONTH,Integer.parseInt(dayStr));
         startCal.set(Calendar.MONTH,Integer.parseInt(monthStr));
@@ -68,9 +67,8 @@ public class CalendarDetailedDayFragment extends Fragment {
         endCal.set(Calendar.HOUR_OF_DAY,23);
         endCal.set(Calendar.MINUTE,59);
         endCal.set(Calendar.SECOND, 59);
-
-        dayEvents.clear();
-        dayEvents.addAll(getCalendarSyncItems(startCal.getTimeInMillis(), endCal.getTimeInMillis()));
+        dayEvents.clear();*/
+        dayEvents.addAll(getDayDetails(dayStr,monthStr,yearStr));
         dayEventsArrayAdapter.notifyDataSetChanged();
 
     }
@@ -159,6 +157,43 @@ public class CalendarDetailedDayFragment extends Fragment {
 
         return allEvents;
     }
+
+
+    private ArrayList<String> getDayDetails(final String day,final String Month,final String year){
+        final String dayMonthYearRequestQuery = (Integer.parseInt(Month)+1)+"/"+day+"/"+year;
+        final ArrayList<String> responseList = new ArrayList<String>();
+        if(!DataFromWebService.isHosted) {
+            final ArrayList<MyEvent> myEvents = MainActivity.data.getEvents();
+            if(null != myEvents && !myEvents.isEmpty()){
+                for(MyEvent myEvent:myEvents){
+                    final String dateTime  = myEvent.getDateTime();
+                    final String date  = dateTime.split(" ")[0];
+                    final String time  = dateTime.split(" ")[1];
+
+
+                    if(null != dateTime && !dateTime.isEmpty() && date.equalsIgnoreCase(dayMonthYearRequestQuery)){
+                       String responseString = "Event :"+myEvent.getName()+" on "+date+" "+time;
+                        if(null != myEvent.getLocation()){
+                            responseString = responseString + " at "+myEvent.getLocation();
+                        }
+                        if(null != myEvent.getNotes()) {
+                            responseString = responseString +"   "+myEvent.getNotes();
+                        }
+                        responseList.add(responseString);
+                    }else{
+                        System.out.println("################");
+                        System.out.println(dayMonthYearRequestQuery +" is not equal to "+date);
+                        System.out.println("################");
+
+                    }
+                }
+            }
+        }else{
+            //TODO get Date and time from Web Service
+        }
+        return responseList;
+    }
+
 
 
     private String getDayAndMonth(Long timeInMillis){

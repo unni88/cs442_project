@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class DataFromWebService {
 
-    public static String hostedURL = "http://10.0.2.2:8080/conventionserviceapp/rest/hello";
+    public static String hostedURL = "http://helloworldrs-thisisit.rhcloud.com/rest/xml";
 
     public static String TAG = "WebServiceClass";
 

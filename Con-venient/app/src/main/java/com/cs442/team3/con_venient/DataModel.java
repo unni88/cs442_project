@@ -179,7 +179,7 @@ public class DataModel {
                 while (i.hasNext()) {
                     MyEvent temp = i.next();
                     if(temp.isSelected())
-                    result += temp.getName() + "\n";
+                        result += temp.storeEvent() + "\n";
                 }
                 FileWriter fw = new FileWriter(file);
                 fw.write(result);
@@ -200,14 +200,18 @@ public class DataModel {
             try {
                 FileReader fr = new FileReader(file);
                 BufferedReader br = new BufferedReader(fr);
-                String eventname;
-                while((eventname = br.readLine())!=null) {
+                String line;
+                while((line = br.readLine())!=null) {
+                    StringTokenizer st = new StringTokenizer(line, "\t");
+                    String eventname = st.nextToken();
+                    String notes = st.nextToken();
                     Iterator<MyEvent> i = events.iterator();
                     while (i.hasNext()) {
                         MyEvent temp = i.next();
                         if (temp.getName().equalsIgnoreCase(eventname)) {
                             temp.selected = true;
-                            continue;
+                            if(!notes.equals("NULL"))
+                                temp.setNotes(notes);
                         }
                     }
                 }

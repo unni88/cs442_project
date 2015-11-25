@@ -52,5 +52,12 @@ public class MyEvent {
     public String getDateTime(){return dateTime;}
     public void setDateTime(String dateTime){this.dateTime = dateTime;}
 
-
+    public String storeEvent(){
+        String result = "";
+        if(getNotes().equals(""))
+            result = getName()+"\tNULL";
+        else
+            result = getName()+"\t"+getNotes();
+        return result;
+    }
 }

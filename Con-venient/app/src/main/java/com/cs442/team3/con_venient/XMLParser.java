@@ -64,8 +64,14 @@ public class XMLParser {
         String eventAddress = "";
         String eventDate = ""; //Format is 10-Sep-2015
         String time = ""; //Format is 14:00
+        String eventImageMap = "http://cmc.iit.edu:1122/hermann_hall.jpg";
         List<Booth> boothList = new ArrayList<Booth>();
         eventName = parser.getAttributeValue(null,"name");
+
+        if(null != parser.getAttributeValue(null,"map")) {
+            eventImageMap = parser.getAttributeValue(null, "map");
+        }
+
         while (parser.next() != XmlPullParser.END_TAG) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
                 continue;
@@ -90,8 +96,9 @@ public class XMLParser {
                //TODO implement SKIP Later... skip(parser);
             }
         }
-        System.out.println("************************************EVENT NAME "+eventName);
+        System.out.println("************************************EVENT NAME " + eventName);
         final MyEvent myEventObject = new MyEvent(eventName,false,eventAddress, eventDate+" "+time); // date Time "11/21/2015  11:14:12"
+        myEventObject.setMap(eventImageMap);
         if(null != boothList && !boothList.isEmpty()){
             for(Booth booth :boothList){
                 myEventObject.addBooth(booth);

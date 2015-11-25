@@ -130,9 +130,24 @@ public class DataModel {
 
     }
 
+    public void getDataFromService(){
+        events =  DataFromWebService.getDataFromWebService();
+    }
+
     public DataModel(){
         super();
-        this.hardCoded();
+
+        int SDK_INT = android.os.Build.VERSION.SDK_INT;
+        if (SDK_INT > 8)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            getDataFromService();
+
+        }
+
+        //this.hardCoded();
     }
 
     public int getHelp(){

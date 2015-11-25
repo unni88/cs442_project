@@ -19,9 +19,9 @@ public class DataFromWebService {
 
     public static String TAG = "WebServiceClass";
 
-    public static boolean isHosted = false;
+    public static boolean isHosted = true;
 
-    public ArrayList<MyEvent> getDataFromWebService(){
+    public static ArrayList<MyEvent> getDataFromWebService(){
         // Get the XML
         URL url;
         ArrayList<MyEvent> events = new ArrayList<MyEvent>();
@@ -32,10 +32,10 @@ public class DataFromWebService {
 
             connection = url.openConnection();
             HttpURLConnection httpConnection = (HttpURLConnection)connection;
-          //  int responseCode = httpConnection.getResponseCode();
+           int responseCode = httpConnection.getResponseCode();
             httpConnection.setRequestMethod("GET");
-            httpConnection.setRequestProperty("Accept","text/xml");
-
+          //  httpConnection.setRequestProperty("Accept","text/xml");
+            System.out.println("*********************************RESPONSE CODES:"+responseCode);
             if (true) {
 
                 String fullString = "";

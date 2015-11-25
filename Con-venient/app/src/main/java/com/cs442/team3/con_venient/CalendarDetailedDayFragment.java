@@ -189,7 +189,33 @@ public class CalendarDetailedDayFragment extends Fragment {
                 }
             }
         }else{
-            //TODO get Date and time from Web Service
+
+            final ArrayList<MyEvent> myEvents = MainActivity.data.getEvents();
+            if(null != myEvents && !myEvents.isEmpty()){
+                for(MyEvent myEvent:myEvents){
+                    final String dateTime  = myEvent.getDateTime();
+                    final String date  = dateTime.split(" ")[0];
+                    final String time  = dateTime.split(" ")[1];
+
+
+                    if(null != dateTime && !dateTime.isEmpty() && checkIfDateisSame(date,dayMonthYearRequestQuery)){
+                        String responseString = "Event :"+myEvent.getName()+" on "+date+" "+time;
+                        if(null != myEvent.getLocation()){
+                            responseString = responseString + " at "+myEvent.getLocation();
+                        }
+                        if(null != myEvent.getNotes()) {
+                            responseString = responseString +"   "+myEvent.getNotes();
+                        }
+                        responseList.add(responseString);
+                    }else{
+                        System.out.println("################");
+                        System.out.println(dayMonthYearRequestQuery +" is not equal to "+date);
+                        System.out.println("################");
+
+                    }
+                }
+            }
+
         }
         return responseList;
     }

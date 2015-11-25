@@ -91,7 +91,7 @@ public class XMLParser {
             }
         }
         System.out.println("************************************EVENT NAME "+eventName);
-        final MyEvent myEventObject = new MyEvent(eventName,false,eventAddress, eventDate+":"+time);
+        final MyEvent myEventObject = new MyEvent(eventName,false,eventAddress, eventDate+" "+time); // date Time "11/21/2015  11:14:12"
         if(null != boothList && !boothList.isEmpty()){
             for(Booth booth :boothList){
                 myEventObject.addBooth(booth);

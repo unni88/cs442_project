@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -21,6 +22,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.Target;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
+
 import java.util.ArrayList;
 
 
@@ -31,11 +36,26 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
     private FragmentTransaction fragmentTransaction;
     private FragmentManager fragmentManager;
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
+    ShowcaseView scv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_event);
+        SharedPreferences prefers = MainActivity.prefs;
+        if (prefers.getBoolean("firsttime", true)) {
+            // do first launch stuff here
+            scv = new ShowcaseView.Builder(this, false)
+                    .setTarget(Target.NONE)
+                    .hideOnTouchOutside()
+                    .setContentTitle("Welcome to the Event Page!")
+                    .setContentText("This is where you can view basic information for an event. \nUse the three-bar navigation drawer" +
+                            " on the top left of your screen to see the different things that this event has to offer")
+                    .setStyle(R.style.FullColor)
+                    .build();
+            scv.setButtonText("OK!");
+            prefers.edit().putBoolean("firsttime", false).commit();
+        }
         //Intent intent = getIntent();
         String eventname = MainActivity.e_name;
         drawerLayout = (DrawerLayout)findViewById(R.id.drawerlayout);

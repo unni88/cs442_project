@@ -584,7 +584,25 @@ public class CalendarViewFragment extends Fragment implements View.OnClickListen
                 }
             }
         }else{
-            //TODO write logic for getting data from Web Service
+            {
+                final ArrayList<MyEvent> myEvents= MainActivity.data.getEvents();
+                if(null != myEvents && !myEvents.isEmpty()){
+                    for(MyEvent myEvent : myEvents){
+                        try {
+                            String date = getDayTimeElement(myEvent.getDateTime(), 2);
+                            if (null != date) {
+                                final int month = Integer.parseInt(date.split("/")[0]);
+                                final int day = Integer.parseInt(date.split("/")[1]);
+                                if (month == monthParam) {
+                                    daysinMonth.put(day + "", day + "");
+                                }
+                            }
+                        }catch (final Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
         }
         return daysinMonth;
     }

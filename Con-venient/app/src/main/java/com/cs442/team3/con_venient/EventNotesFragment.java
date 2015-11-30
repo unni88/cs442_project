@@ -113,7 +113,6 @@ public class EventNotesFragment extends Fragment {
         int index =0;
         for (int i = 0; i < events.size(); i++){
             if (name.equals(events.get(i).getName())) {
-                // Toast.makeText(getActivity(),"works",Toast.LENGTH_LONG).show();
                 ev = events.get(i);
                 index =i;
             }
@@ -122,6 +121,6 @@ public class EventNotesFragment extends Fragment {
             ev.setNotes(edit.getText().toString());
             events.set(index, ev);
             MainActivity.data.setEvents(events);
-
+            Toast.makeText(getActivity(),"Note has been saved.",Toast.LENGTH_LONG).show();
     }
 }

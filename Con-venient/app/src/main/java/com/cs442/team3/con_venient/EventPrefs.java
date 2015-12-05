@@ -80,6 +80,7 @@ public class EventPrefs extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //when clicked it will show a toast.
                 MyEvent event = (MyEvent) parent.getItemAtPosition(position);
+                ((MyEvent) parent.getItemAtPosition(position)).setSelected(true);
                 //Toast.makeText(getApplicationContext(), "Clicked " + event.getName(), Toast.LENGTH_LONG).show();
             }
         });

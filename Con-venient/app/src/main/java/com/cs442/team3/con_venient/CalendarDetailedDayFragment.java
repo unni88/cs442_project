@@ -1,20 +1,32 @@
 package com.cs442.team3.con_venient;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.text.Format;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -90,6 +102,20 @@ public class CalendarDetailedDayFragment extends Fragment {
         dayEventsArrayAdapter= new ArrayAdapter<String>(rootView.getContext(),R.layout.fragment_day_detailed_calendar,R.id.day_events_list_text,dayEvents);
         final ListView lv = (ListView) rootView.findViewById(R.id.day_events_list);
         lv.setAdapter(dayEventsArrayAdapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                String yourData = dayEvents.get(position);
+
+                if(null != yourData && (!yourData.equalsIgnoreCase("--Please Click on a day to load the Events--")) && (!yourData.equalsIgnoreCase("--No Events Found--"))  ) {
+                    Toast.makeText(getContext(), yourData, Toast.LENGTH_SHORT).show();
+                    showConfirmCalSync(getActivity(),yourData);
+                }
+            }
+        });
+
+
         return rootView;
     }
 
@@ -126,7 +152,18 @@ public class CalendarDetailedDayFragment extends Fragment {
         Format df = android.text.format.DateFormat.getDateFormat(getActivity().getApplicationContext());
         Format tf = android.text.format.DateFormat.getTimeFormat(getActivity().getApplicationContext());
         String selection = "(( " + CalendarContract.Events.DTSTART + " >= " + startTime + " ) AND ( " + CalendarContract.Events.DTSTART + " <= " + endTime + " ))";
+
+
+
+        if ( ContextCompat.checkSelfPermission(this.getActivity(), Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED ) {
+
+            ActivityCompat.requestPermissions(this.getActivity(), new String[]{Manifest.permission.WRITE_CALENDAR},
+                    1);
+        }
+
         mCursor  = this.getActivity().getContentResolver().query(CalendarContract.Events.CONTENT_URI, COLS, selection, null, null);
+
+
         boolean presentFlag  = mCursor.moveToFirst();
 
         if((presentFlag)) {
@@ -157,6 +194,37 @@ public class CalendarDetailedDayFragment extends Fragment {
 
         return allEvents;
     }
+
+
+
+
+
+    // Add an event to the calendar of the user.
+    public static void addEvent(final Activity act,final int year,final int month,final int day,final int hour,final int minute,final String eventName) {
+        GregorianCalendar calDate = new GregorianCalendar(year, month,day,hour,minute);
+        try {
+            ContentValues values = new ContentValues();
+            values.put(CalendarContract.Events.DTSTART, calDate.getTimeInMillis());
+            values.put(CalendarContract.Events.DTEND, calDate.getTimeInMillis() + 60 * 60 * 1000);
+            values.put(CalendarContract.Events.TITLE, eventName);
+            values.put(CalendarContract.Events.CALENDAR_ID, 1);
+            values.put(CalendarContract.Events.EVENT_TIMEZONE, Calendar.getInstance().getTimeZone().getID());
+
+            if ( ContextCompat.checkSelfPermission(act, Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED ) {
+
+                ActivityCompat.requestPermissions(act, new String[]{Manifest.permission.WRITE_CALENDAR},
+                        1);
+            }
+
+            act.getContentResolver().insert(CalendarContract.Events.CONTENT_URI, values);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 
     private ArrayList<String> getDayDetails(final String day,final String Month,final String year){
@@ -248,6 +316,38 @@ public class CalendarDetailedDayFragment extends Fragment {
         int second = c.get(Calendar.SECOND);
         final String strDate  = hour +":"+minute+":"+second;
         return strDate;
+    }
+
+
+
+    private static AlertDialog showConfirmCalSync(final Activity act,final String eventDets){
+        final String eventName = (eventDets.split(" on ")[0]).split("Event :")[1];
+        final String date = (eventDets.split(" on ")[1]).split(" ")[0];
+        final String time = (eventDets.split(" on ")[1]).split(" ")[1];
+
+        final int month = (Integer.parseInt(date.split("/")[0])-1);
+        final int day = Integer.parseInt(date.split("/")[1]);
+        final int year = Integer.parseInt(date.split("/")[2]);
+
+        final int hour = Integer.parseInt(time.split(":")[0]);
+        final int minute = Integer.parseInt(time.split(":")[1]);
+
+
+
+        AlertDialog.Builder refreshDialog = new AlertDialog.Builder(act);
+        refreshDialog.setTitle("Confirmation");
+        refreshDialog.setMessage("Are you sure you wish to Add this Event to your personal Calendar");
+        refreshDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                addEvent(act,year,month,day,hour,minute,eventName);
+            }
+        });
+        refreshDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        return refreshDialog.show();
     }
 
 }

@@ -12,6 +12,7 @@
             android:layout_height="wrap_content"
             android:text="Done"
             android:onClick = "onSave"
+            android:background="@drawable/patched_button"
             />
      <!--
         <TableRow

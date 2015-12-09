@@ -5,6 +5,7 @@ package com.cs442.team3.con_venient;
  */
 import android.app.usage.UsageEvents;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -71,7 +72,7 @@ public class EventPrefs extends AppCompatActivity {
 
         //creates an arrayadapter from the string array
         dataAdapter = new MyAdapter(this, R.layout.event_list_items,eventsList);
-        ListView listView = (ListView) findViewById(R.id.ListView1);
+        final ListView listView = (ListView) findViewById(R.id.ListView1);
         // assign adapter to ListView
         listView.setAdapter(dataAdapter);
 

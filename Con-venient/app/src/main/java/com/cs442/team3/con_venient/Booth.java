@@ -14,6 +14,45 @@ public class Booth {
 
     private String description;
 
+    private String requirements;
+
+    private String typeofposition;
+
+    private String positionhiring;
+
+    private String majors;
+
+    public String getRequirements() {
+        return requirements;
+    }
+
+    public String getTypeofposition() {
+        return typeofposition;
+    }
+
+    public String getPositionhiring() {
+        return positionhiring;
+    }
+
+    public String getMajors() {
+        return majors;
+    }
+
+    public void setRequirements(String requirements) {
+        this.requirements = requirements;
+    }
+
+    public void setTypeofposition(String typeofposition) {
+        this.typeofposition = typeofposition;
+    }
+
+    public void setPositionhiring(String positionhiring) {
+        this.positionhiring = positionhiring;
+    }
+
+    public void setMajors(String majors) {
+        this.majors = majors;
+    }
 
     public Booth(String boothName, int boothid, String website, String phone, String description) {
         this.boothName = boothName;

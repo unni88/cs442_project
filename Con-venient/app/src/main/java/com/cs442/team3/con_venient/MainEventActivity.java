@@ -118,8 +118,10 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        System.out.println("*************************************id"+id);
         if (id == R.id.action_settings) {
-            return true;
+
+            showRefershDialog(MainEventActivity.this).show();
         }
         if (id == android.R.id.home){
             if (drawerLayout.isDrawerOpen(navList)){
@@ -189,6 +191,27 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
         });
         return downloadDialog.show();
     }
+
+
+    private static AlertDialog showRefershDialog(final Activity act){
+        AlertDialog.Builder refreshDialog = new AlertDialog.Builder(act);
+        refreshDialog.setTitle("Refresh Confirmation");
+        refreshDialog.setMessage("Are you sure you wish to refresh the data");
+        refreshDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //   Toast.makeText(,"Details Being Synced with the Web Service",Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+        refreshDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        return refreshDialog.show();
+    }
+
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

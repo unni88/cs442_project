@@ -166,6 +166,11 @@ public class XMLParser {
         String phone="";
         String description="";
 
+        String requirements="";
+        String typeofposition="";
+        String positionhiring="";
+        String majorsseeking="";
+
         String name = parser.getName();
         boothName = parser.getAttributeValue(null, "name");
         boothid = Integer.parseInt(parser.getAttributeValue(null, "id"));
@@ -183,12 +188,26 @@ public class XMLParser {
                 phone = readPhone(parser);
             } else if (name.equals("description")) {
                 description = readDescription(parser);
+            }else if (name.equals("requirements")) {
+                requirements = readRequirements(parser);
+            }else if (name.equals("typeofposition")) {
+                typeofposition = readTypeOfPosition(parser);
+            }else if (name.equals("positionhiring")) {
+                positionhiring = readPositionHiring(parser);
+            }else if (name.equals("majorsseeking")) {
+                majorsseeking = readMajorsSeeking(parser);
             }
         }
      //   System.out.println("WEBSITE:" + website);
 
 //        parser.require(XmlPullParser.END_TAG, ns, "booth");
-        return new Booth(boothName,boothid,website,phone,description);
+        final Booth booth =  new Booth(boothName,boothid,website,phone,description);
+
+        booth.setRequirements(requirements);
+        booth.setTypeofposition(typeofposition);
+        booth.setPositionhiring(positionhiring);
+        booth.setMajors(majorsseeking);
+        return booth;
     }
 
 
@@ -221,6 +240,38 @@ public class XMLParser {
         return desc;
     }
 
+
+    // Processes title tags in the feed.
+    private String readRequirements(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, "requirements");
+        String desc = readText(parser);
+        parser.require(XmlPullParser.END_TAG, ns, "requirements");
+        return desc;
+    }
+
+    // Processes title tags in the feed.
+    private String readTypeOfPosition(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, "typeofposition");
+        String desc = readText(parser);
+        parser.require(XmlPullParser.END_TAG, ns, "typeofposition");
+        return desc;
+    }
+
+    // Processes title tags in the feed.
+    private String readPositionHiring(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, "positionhiring");
+        String desc = readText(parser);
+        parser.require(XmlPullParser.END_TAG, ns, "positionhiring");
+        return desc;
+    }
+
+    // Processes title tags in the feed.
+    private String readMajorsSeeking(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, "majorsseeking");
+        String desc = readText(parser);
+        parser.require(XmlPullParser.END_TAG, ns, "majorsseeking");
+        return desc;
+    }
 
 
 

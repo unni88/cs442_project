@@ -53,9 +53,20 @@ public class BoothDetailsActivity extends AppCompatActivity {
         TextView cont = (TextView) findViewById(R.id.booth_detail_cont);
         TextView desc = (TextView) findViewById(R.id.booth_detail_des);
 
+        TextView boothrequirements = (TextView) findViewById(R.id.booth_requirements);
+        TextView typeofposition = (TextView) findViewById(R.id.booth_typeofposition);
+        TextView positionhiring = (TextView) findViewById(R.id.booth_positionhiring);
+        TextView majors = (TextView) findViewById(R.id.booth_majors);
+
+
+
         web.setText(booth.getWebsite());
         cont.setText(booth.getPhone());
         desc.setText(booth.getDescription());
+        boothrequirements.setText(booth.getRequirements());
+        typeofposition.setText(booth.getTypeofposition());
+        positionhiring.setText(booth.getPositionhiring());
+        majors.setText(booth.getMajors());
 
 
     }
@@ -77,7 +88,7 @@ public class BoothDetailsActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            showRefershDialog(BoothDetailsActivity.this).show();
         }
         if (id ==R.id.action_QRCode){
             try {
@@ -138,6 +149,26 @@ public class BoothDetailsActivity extends AppCompatActivity {
             }
         });
         return downloadDialog.show();
+    }
+
+
+    private static AlertDialog showRefershDialog(final Activity act){
+        AlertDialog.Builder refreshDialog = new AlertDialog.Builder(act);
+        refreshDialog.setTitle("Refresh Confirmation");
+        refreshDialog.setMessage("Are you sure you wish to refresh the data");
+        refreshDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //   Toast.makeText(,"Details Being Synced with the Web Service",Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+        refreshDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        return refreshDialog.show();
     }
 
     @Override

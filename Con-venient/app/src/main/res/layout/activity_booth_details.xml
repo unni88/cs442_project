@@ -80,6 +80,92 @@
                 android:textSize="20sp"/>
         </TableRow>
 
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Requirements:"
+                android:layout_column="0"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/booth_requirements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint=""
+                android:paddingLeft="10dp"
+                android:layout_column="1"
+                android:textSize="20sp"/>
+        </TableRow>
+
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Type of Position:"
+                android:layout_column="0"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/booth_typeofposition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint=""
+                android:paddingLeft="10dp"
+                android:layout_column="1"
+                android:textSize="20sp"/>
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hiring Position:"
+                android:layout_column="0"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/booth_positionhiring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint=""
+                android:paddingLeft="10dp"
+                android:layout_column="1"
+                android:textSize="20sp"/>
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Majors Seeking:"
+                android:layout_column="0"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/booth_majors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint=""
+                android:paddingLeft="10dp"
+                android:layout_column="1"
+                android:textSize="20sp"/>
+        </TableRow>
+
     </TableLayout>
 
 </LinearLayout>

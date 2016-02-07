@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Booth Title"
+        android:textSize="35sp"
+        android:id="@+id/booth_detail_title"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:shrinkColumns="1">
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Website:"
+                android:layout_column="0"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/booth_detail_web"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="website"
+                android:paddingLeft="10dp"
+                android:layout_column="1"
+                android:autoLink="all"
+                android:textSize="20sp"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contact:"
+                android:layout_column="0"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/booth_detail_cont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="phone"
+                android:paddingLeft="10dp"
+                android:autoLink="all"
+                android:layout_column="1"
+                android:textSize="20sp"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description:"
+                android:layout_column="0"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/booth_detail_des"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="description"
+                android:paddingLeft="10dp"
+                android:layout_column="1"
+                android:textSize="20sp"/>
+        </TableRow>
+
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Requirements:"
+                android:layout_column="0"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/booth_requirements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint=""
+                android:paddingLeft="10dp"
+                android:layout_column="1"
+                android:textSize="20sp"/>
+        </TableRow>
+
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Type of Position:"
+                android:layout_column="0"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/booth_typeofposition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint=""
+                android:paddingLeft="10dp"
+                android:layout_column="1"
+                android:textSize="20sp"/>
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hiring Position:"
+                android:layout_column="0"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/booth_positionhiring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint=""
+                android:paddingLeft="10dp"
+                android:layout_column="1"
+                android:textSize="20sp"/>
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Majors Seeking:"
+                android:layout_column="0"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/booth_majors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint=""
+                android:paddingLeft="10dp"
+                android:layout_column="1"
+                android:textSize="20sp"/>
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

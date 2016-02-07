@@ -1,16 +1,22 @@
 package com.cs442.team3.con_venient;
 
 import android.app.Activity;
+import android.app.ListFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +32,9 @@ import java.util.Arrays;
  */
 public class EventBoothsFragment extends Fragment {
 
-    String[] items;
+    public final static String EXTRA_MESSAGE = "boothname";
+
+    ArrayList<String> items=new ArrayList<String>();
 
     ArrayList<String> listItems;
 
@@ -35,6 +43,9 @@ public class EventBoothsFragment extends Fragment {
     ListView listView;
 
     EditText editText;
+
+    private FragmentTransaction fragmentTransaction;
+    private FragmentManager fragmentManager;
 
     public EventBoothsFragment() {
         // Required empty public constructor
@@ -57,6 +68,7 @@ public class EventBoothsFragment extends Fragment {
         listView = (ListView) layout.findViewById(R.id.booth_listview);
         editText = (EditText) layout.findViewById(R.id.booth_searchBar);
         initList();
+
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -65,10 +77,10 @@ public class EventBoothsFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().equals("")){
+                if (s.toString().equals("")) {
                     //reset listview
                     initList();
-                }else {
+                } else {
                     //preform search
                     searchItem(s.toString());
                 }
@@ -79,12 +91,36 @@ public class EventBoothsFragment extends Fragment {
 
             }
         });
-        // Inflate the layout for this fragment
-        return layout;
 
-    }
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1,
+                                    int position, long arg3) {
+                // TODO Auto-generated method stub
+                String chosen = ""+listView.getItemAtPosition(position);
+                //Toast.makeText(getActivity(), chosen, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getActivity(), BoothDetailsActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, chosen);
+                startActivity(intent);
+
+
+            }
+        });
+
+            // Inflate the layout for this fragment
+            return layout;
+
+        }
 
     public void searchItem(String textToSearch){
+
+        String[] items = new String[listItems.size()];
+
+        for(int i =0;i<listItems.size();i++)
+            items[i]=listItems.get(i);
+
         for(String item:items){
             if(!item.contains(textToSearch)){
                 listItems.remove(item);
@@ -94,13 +130,29 @@ public class EventBoothsFragment extends Fragment {
     }
 
     public void initList(){
-        ArrayList<MyEvent> ev = new ArrayList<MyEvent>();
+        ArrayList<MyEvent> events = MainActivity.data.getEvents();
+        MyEvent ev = new MyEvent("",false,"","");
+        String name = MainActivity.e_name;
+        for(int i=0;i< events.size();i++)
+        {
+            if(name.equals(events.get(i).getName())){
 
-        items=new String[]{"ACCO Brands", "Aerotek","BMW Tech Corp","CDK Global","CCC Info Services"};
+                ev = events.get(i);
+            }
 
-        listItems=new ArrayList<>(Arrays.asList(items));
+        }
+        ArrayList<Booth> bo = ev.getBooths();
+        ArrayList<String> str = new ArrayList<String>();
+
+        for (int i =0;i<bo.size();i++){
+            str.add(bo.get(i).getBoothName());
+
+        }
+
+        listItems=str;
+        items = str;
         adapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.booth_list_item, R.id.txtitem, listItems);
+                R.layout.booth_list_item, R.id.txtitem, str);
         listView.setAdapter(adapter);
     }
 

@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cs442.team3.con_venient" >
+
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+
+
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/main_icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,9 +27,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EventPrefs" android:label="Event Preferences" />
-        <activity android:name=".WebViewActivity" android:label="WebView Activity" />
-        <activity android:name=".MainEventActivity" android:label="Event Activity" />
+        <activity
+            android:name=".EventPrefs"
+            android:label="Event Preferences" />
+        <activity
+            android:name=".WebViewActivity"
+            android:label="WebView Activity" />
+        <activity
+            android:name=".MainEventActivity"
+            android:label="Event Activity" />
+        <activity
+            android:name=".BoothDetailsActivity"
+            android:label="@string/title_activity_booth_details" >
+        </activity>
+        <activity android:name=".CalendarMainActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

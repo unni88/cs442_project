@@ -7,27 +7,44 @@
         android:text="@string/add_events"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@drawable/patched_button"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="@string/hello_world"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:id="@+id/infoText"
+        android:layout_below="@+id/addEvent"
+        android:layout_centerHorizontal="true" />
 
     <ListView android:id="@+id/eventList"
         android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_below="@+id/infoText"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/addEvent" />
-<!--
-    <Button android:id="@+id/Import" style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Import"
-        android:layout_centerInParent="true"
-        android:layout_below="@id/eventList"
-        android:onClick="ImportBtnClicked"/>
+        android:layout_alignParentStart="true"
+        android:textSize="50sp"
+        />
 
-    <Button android:id="@+id/Export" style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Export"
-        android:layout_centerInParent="true"
-        android:layout_below="@id/Import"
-        android:onClick="ExportBtnClicked"/>
 
-  -->
+    <!--
+        <Button android:id="@+id/Import" style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Import"
+            android:layout_centerInParent="true"
+            android:layout_below="@id/eventList"
+            android:onClick="ImportBtnClicked"/>
+
+        <Button android:id="@+id/Export" style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Export"
+            android:layout_centerInParent="true"
+            android:layout_below="@id/Import"
+            android:onClick="ExportBtnClicked"/>
+
+      -->
 </RelativeLayout>
 

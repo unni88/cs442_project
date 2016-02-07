@@ -3,7 +3,9 @@ package com.cs442.team3.con_venient;
 /**
  * Created by wmei on 10/31/15.
  */
+import android.app.usage.UsageEvents;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -25,6 +27,9 @@ import java.util.ArrayList;
 public class EventPrefs extends AppCompatActivity {
 
     DataModel data = MainActivity.data;
+
+    DataModel data1 = new DataModel();
+
 
     MyAdapter dataAdapter = null;
 
@@ -67,7 +72,7 @@ public class EventPrefs extends AppCompatActivity {
 
         //creates an arrayadapter from the string array
         dataAdapter = new MyAdapter(this, R.layout.event_list_items,eventsList);
-        ListView listView = (ListView) findViewById(R.id.ListView1);
+        final ListView listView = (ListView) findViewById(R.id.ListView1);
         // assign adapter to ListView
         listView.setAdapter(dataAdapter);
 
@@ -76,7 +81,7 @@ public class EventPrefs extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //when clicked it will show a toast.
                 MyEvent event = (MyEvent) parent.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(), "Clicked " + event.getName(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Clicked " + event.getName(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -86,13 +91,14 @@ public class EventPrefs extends AppCompatActivity {
 
         finish();
     }
-    /*
-    public void onCancel(View view){
 
+    public void onCancel(View view){
+        DataModel data2 = data1;
+        ArrayList<MyEvent> ev = data2.getEvents();
         MainActivity.data.setEvents(ev);
         finish();
     }
-    */
+
 
     public class MyAdapter extends ArrayAdapter<MyEvent> {
 

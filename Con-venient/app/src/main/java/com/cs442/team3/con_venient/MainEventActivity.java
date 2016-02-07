@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -21,6 +22,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.Target;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
+
 import java.util.ArrayList;
 
 
@@ -31,22 +36,35 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
     private FragmentTransaction fragmentTransaction;
     private FragmentManager fragmentManager;
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
+    ShowcaseView scv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_event);
-        Intent intent = getIntent();
-        String eventname = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        SharedPreferences prefers = MainActivity.prefs;
+        if (prefers.getBoolean("firsttime", true)) {
+            // do first launch stuff here
+            scv = new ShowcaseView.Builder(this, false)
+                    .setTarget(Target.NONE)
+                    .hideOnTouchOutside()
+                    .setContentTitle("Welcome to the Event Page!")
+                    .setContentText("This is where you can view basic information for an event. \nUse the three-bar navigation drawer" +
+                            " on the top left of your screen to see the different things that this event has to offer")
+                    .setStyle(R.style.FullColor)
+                    .build();
+            scv.setButtonText("OK!");
+            prefers.edit().putBoolean("firsttime", false).commit();
+        }
+        //Intent intent = getIntent();
+        String eventname = MainActivity.e_name;
         drawerLayout = (DrawerLayout)findViewById(R.id.drawerlayout);
         navList = (ListView)findViewById(R.id.navlist);
         ArrayList<String> navArray = new ArrayList<String>();
         navArray.add(eventname);
         navArray.add("Booth List");
         navArray.add("Event Map");
-        navArray.add("Fragment 3");
-        navArray.add("Fragment 4");
-        navArray.add("Fragment 5");
+        navArray.add("Notes");
         navList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_activated_1,navArray);
         navList.setAdapter(adapter);
@@ -89,16 +107,12 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
                 fragmentTransaction.commit();
                 break;
             case 3:
+                EventNotesFragment noteFragment = new EventNotesFragment();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentholder,noteFragment);
+                fragmentTransaction.commit();
 
                 break;
-            case 4:
-
-                break;
-
-            case 5:
-
-                break;
-
         }
 
     }
@@ -124,8 +138,10 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        System.out.println("*************************************id"+id);
         if (id == R.id.action_settings) {
-            return true;
+
+            showRefershDialog(MainEventActivity.this).show();
         }
         if (id == android.R.id.home){
             if (drawerLayout.isDrawerOpen(navList)){
@@ -145,6 +161,11 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
                 showDialog(MainEventActivity.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
             }
         }
+        if(id == R.id.action_show_calendar_id){
+            final Intent intent = new Intent(this,CalendarMainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -157,8 +178,8 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
                 String contents = intent.getStringExtra("SCAN_RESULT");
                 String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
 
-                Toast toast = Toast.makeText(this, "Content:" + contents, Toast.LENGTH_SHORT);
-                toast.show();
+                //Toast toast = Toast.makeText(this, "Content:" + contents, Toast.LENGTH_SHORT);
+                //toast.show();
 
                 Intent webviewActivity = new Intent(getBaseContext(), WebViewActivity.class);
                 Bundle bundle = new Bundle();
@@ -191,6 +212,27 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
         return downloadDialog.show();
     }
 
+
+    private static AlertDialog showRefershDialog(final Activity act){
+        AlertDialog.Builder refreshDialog = new AlertDialog.Builder(act);
+        refreshDialog.setTitle("Refresh Confirmation");
+        refreshDialog.setMessage("Are you sure you wish to refresh the data");
+        refreshDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //   Toast.makeText(,"Details Being Synced with the Web Service",Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+        refreshDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        return refreshDialog.show();
+    }
+
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         loadSelection(position);
@@ -201,6 +243,9 @@ public class MainEventActivity extends AppCompatActivity implements AdapterView.
     @Override
     public void onBackPressed() {
         finish();
+
+        //FragmentManager fm = this.getSupportFragmentManager();
+        //fm.popBackStack();
         /*navList.setItemChecked(0,true);
         EventHomeFragment eventHomeFragment = new EventHomeFragment();
         fragmentTransaction = fragmentManager.beginTransaction();

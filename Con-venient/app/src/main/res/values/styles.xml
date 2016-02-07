@@ -2,7 +2,19 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name = "colorPrimary">#ff981e</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@drawable/icon_background</item>
+    </style>
+
+    <style name="TitleWord" parent="TextAppearance.ShowcaseView.Title">
+        <item name="android:textColor">#FFF</item>
+    </style>
+
+    <style name="FullColor" parent="ShowcaseView.Light">
+        <item name="sv_backgroundColor">#ff981e</item>
+        <item name="sv_showcaseColor">#04ba8b</item>
+        <item name="sv_titleTextAppearance">@style/TitleWord</item>
     </style>
 
 </resources>

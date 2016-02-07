@@ -1,42 +1,104 @@
 package com.cs442.team3.con_venient;
 
 /**
- * Created by wmei on 10/31/15.
+ * Created by Unni on 11/19/15.
  */
 public class Booth {
+    private String boothName;
 
-    int id = 0;
-    String name = null;
-    String website = null;
-    String contactInfo = null;
-    String descriptions = null;
+    private int boothid;
 
-    public Booth( String name, String website, String contactInfo, String descriptions){
-        super();
-        //this.id = id;
-        this.name = name;
-        this.website = website;
-        this.contactInfo = contactInfo;
-        this.descriptions = descriptions;
+    private String website;
 
+    private String phone;
+
+    private String description;
+
+    private String requirements;
+
+    private String typeofposition;
+
+    private String positionhiring;
+
+    private String majors;
+
+    public String getRequirements() {
+        return requirements;
     }
 
-    public String getName(){return name;}
-    public void setName(String name){this.name = name;}
+    public String getTypeofposition() {
+        return typeofposition;
+    }
 
-    public String getWebsite(){return website;}
-    public void setWebsite(String website){this.website = website;}
+    public String getPositionhiring() {
+        return positionhiring;
+    }
 
-    public String getContactInfo(){return contactInfo;}
-    public void setContactInfo(String contactInfo){this.contactInfo=contactInfo;}
+    public String getMajors() {
+        return majors;
+    }
 
-    public String getDescriptions(){return descriptions;}
-    public void setDescriptions(String descriptions){this.descriptions = descriptions;}
+    public void setRequirements(String requirements) {
+        this.requirements = requirements;
+    }
 
-    public int getId(){return id;}
-    public void setId(int id){this.id = id;}
+    public void setTypeofposition(String typeofposition) {
+        this.typeofposition = typeofposition;
+    }
 
+    public void setPositionhiring(String positionhiring) {
+        this.positionhiring = positionhiring;
+    }
 
+    public void setMajors(String majors) {
+        this.majors = majors;
+    }
 
+    public Booth(String boothName, int boothid, String website, String phone, String description) {
+        this.boothName = boothName;
+        this.boothid = boothid;
+        this.website = website;
+        this.phone = phone;
+        this.description = description;
+    }
 
+    public String getBoothName() {
+        return boothName;
+    }
+
+    public void setBoothName(String boothName) {
+        this.boothName = boothName;
+    }
+
+    public int getBoothid() {
+        return boothid;
+    }
+
+    public void setBoothid(int boothid) {
+        this.boothid = boothid;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
